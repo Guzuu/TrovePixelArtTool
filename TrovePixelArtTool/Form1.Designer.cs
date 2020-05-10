@@ -39,9 +39,16 @@
             this.trackBar1 = new System.Windows.Forms.TrackBar();
             this.buttonSaveOutput = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.groupBoxBlockTypes = new System.Windows.Forms.GroupBox();
+            this.checkBoxStandard = new System.Windows.Forms.CheckBox();
+            this.checkBoxMetalic = new System.Windows.Forms.CheckBox();
+            this.checkBoxGlass = new System.Windows.Forms.CheckBox();
+            this.checkBoxGlowing = new System.Windows.Forms.CheckBox();
+            this.buttonConvertColors = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPixelArtPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutputPixelArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+            this.groupBoxBlockTypes.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonOpenFile
@@ -130,7 +137,7 @@
             this.trackBar1.Orientation = System.Windows.Forms.Orientation.Vertical;
             this.trackBar1.Size = new System.Drawing.Size(45, 213);
             this.trackBar1.TabIndex = 7;
-            this.trackBar1.Value = 50;
+            this.trackBar1.Value = 100;
             this.trackBar1.Scroll += new System.EventHandler(this.trackBar1_Scroll);
             // 
             // buttonSaveOutput
@@ -148,11 +155,81 @@
             // 
             this.saveFileDialog1.Filter = "Image file|*.jpeg";
             // 
+            // groupBoxBlockTypes
+            // 
+            this.groupBoxBlockTypes.Controls.Add(this.checkBoxGlowing);
+            this.groupBoxBlockTypes.Controls.Add(this.checkBoxGlass);
+            this.groupBoxBlockTypes.Controls.Add(this.checkBoxMetalic);
+            this.groupBoxBlockTypes.Controls.Add(this.checkBoxStandard);
+            this.groupBoxBlockTypes.Location = new System.Drawing.Point(462, 338);
+            this.groupBoxBlockTypes.Name = "groupBoxBlockTypes";
+            this.groupBoxBlockTypes.Size = new System.Drawing.Size(111, 155);
+            this.groupBoxBlockTypes.TabIndex = 9;
+            this.groupBoxBlockTypes.TabStop = false;
+            this.groupBoxBlockTypes.Text = "Block Types";
+            // 
+            // checkBoxStandard
+            // 
+            this.checkBoxStandard.AutoSize = true;
+            this.checkBoxStandard.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBoxStandard.Location = new System.Drawing.Point(6, 19);
+            this.checkBoxStandard.Name = "checkBoxStandard";
+            this.checkBoxStandard.Size = new System.Drawing.Size(104, 28);
+            this.checkBoxStandard.TabIndex = 0;
+            this.checkBoxStandard.Text = "Standard";
+            this.checkBoxStandard.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxMetalic
+            // 
+            this.checkBoxMetalic.AutoSize = true;
+            this.checkBoxMetalic.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBoxMetalic.Location = new System.Drawing.Point(6, 53);
+            this.checkBoxMetalic.Name = "checkBoxMetalic";
+            this.checkBoxMetalic.Size = new System.Drawing.Size(88, 28);
+            this.checkBoxMetalic.TabIndex = 1;
+            this.checkBoxMetalic.Text = "Metalic";
+            this.checkBoxMetalic.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxGlass
+            // 
+            this.checkBoxGlass.AutoSize = true;
+            this.checkBoxGlass.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBoxGlass.Location = new System.Drawing.Point(6, 87);
+            this.checkBoxGlass.Name = "checkBoxGlass";
+            this.checkBoxGlass.Size = new System.Drawing.Size(75, 28);
+            this.checkBoxGlass.TabIndex = 2;
+            this.checkBoxGlass.Text = "Glass";
+            this.checkBoxGlass.UseVisualStyleBackColor = true;
+            // 
+            // checkBoxGlowing
+            // 
+            this.checkBoxGlowing.AutoSize = true;
+            this.checkBoxGlowing.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBoxGlowing.Location = new System.Drawing.Point(6, 121);
+            this.checkBoxGlowing.Name = "checkBoxGlowing";
+            this.checkBoxGlowing.Size = new System.Drawing.Size(98, 28);
+            this.checkBoxGlowing.TabIndex = 3;
+            this.checkBoxGlowing.Text = "Glowing";
+            this.checkBoxGlowing.UseVisualStyleBackColor = true;
+            // 
+            // buttonConvertColors
+            // 
+            this.buttonConvertColors.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonConvertColors.Location = new System.Drawing.Point(405, 529);
+            this.buttonConvertColors.Name = "buttonConvertColors";
+            this.buttonConvertColors.Size = new System.Drawing.Size(201, 62);
+            this.buttonConvertColors.TabIndex = 10;
+            this.buttonConvertColors.Text = "Convert Colors";
+            this.buttonConvertColors.UseVisualStyleBackColor = true;
+            this.buttonConvertColors.Click += new System.EventHandler(this.buttonConvertColors_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1035, 625);
+            this.Controls.Add(this.buttonConvertColors);
+            this.Controls.Add(this.groupBoxBlockTypes);
             this.Controls.Add(this.buttonSaveOutput);
             this.Controls.Add(this.trackBar1);
             this.Controls.Add(this.textBoxOutputSize);
@@ -167,6 +244,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPixelArtPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutputPixelArt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+            this.groupBoxBlockTypes.ResumeLayout(false);
+            this.groupBoxBlockTypes.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -185,6 +264,12 @@
         private System.Windows.Forms.TrackBar trackBar1;
         private System.Windows.Forms.Button buttonSaveOutput;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.GroupBox groupBoxBlockTypes;
+        private System.Windows.Forms.CheckBox checkBoxGlowing;
+        private System.Windows.Forms.CheckBox checkBoxGlass;
+        private System.Windows.Forms.CheckBox checkBoxMetalic;
+        private System.Windows.Forms.CheckBox checkBoxStandard;
+        private System.Windows.Forms.Button buttonConvertColors;
     }
 }
 

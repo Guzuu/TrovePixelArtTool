@@ -22,26 +22,20 @@ namespace TrovePixelArtTool
 
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
+            openFileDialog1.FileName = "Open Image File";
             openFileDialog1.ShowDialog();
             px1 = new PixelArt(new Bitmap(openFileDialog1.FileName, true));
 
             pictureBoxPixelArtPreview.Image = px1.srcImage;
             pictureBoxOutputPixelArt.Image = px1.srcImage;
-            trackBar1.Value = 50;
-
+            trackBar1.Value = 100;
             trackBar1.Enabled = true;
 
             textBoxInputSize.Text = px1.srcImage.Width.ToString()+"x"+ px1.srcImage.Height.ToString();
+            textBoxOutputSize.Text = textBoxInputSize.Text;
 
-            // Loop through the images pixels
-            /*for (int y = 0; y < img1.Height; y++)
-            {
-                for (int x = 0; x < img1.Width; x++)
-                {
-                    Console.Write(img1.GetPixel(x, y));
-                }
-                Console.Write("\n");
-            }*/
+
+            
 
 
 
@@ -59,6 +53,44 @@ namespace TrovePixelArtTool
             saveFileDialog1.ShowDialog();
             Console.WriteLine(saveFileDialog1.FileName);
             pictureBoxOutputPixelArt.Image.Save(saveFileDialog1.FileName);
+        }
+
+        private void buttonConvertColors_Click(object sender, EventArgs e)
+        {
+            Blocks b1 = new Blocks();
+            Bitmap OutputRecolored = new Bitmap(px1.PixelArtResolution.X, px1.PixelArtResolution.Y);
+            //Color newColor;
+
+            /*if (checkBoxStandard.Checked)
+            {
+                b1.InitializeStandard();
+            }
+
+            if (checkBoxMetalic.Checked)
+            {
+                b1.InitializeMetalic();
+            }
+
+            if (checkBoxGlass.Checked)
+            {
+                b1.InitializeGlass();
+            }
+
+            if (checkBoxGlowing.Checked)
+            {
+                b1.InitializeGlowing();
+            }*/
+
+
+            for (int y = 0; y < px1.PixelArtResolution.Y; y++)
+            {
+                for (int x = 0; x < px1.PixelArtResolution.X; x++)
+                {
+                    px1.RGBtoLAB(x, y);
+                    //OutputRecolored.SetPixel(x, y, newColor);
+                }
+                Console.Write("\n");
+            }
         }
     }
 }
