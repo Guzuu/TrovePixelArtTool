@@ -44,7 +44,7 @@ namespace TrovePixelArtTool
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             pictureBoxOutputPixelArt.Image = px1.ScaleImage(trackBar1.Value);
-            textBoxOutputSize.Text = px1.PixelArtResolution.X.ToString() + "x" + px1.PixelArtResolution.Y.ToString();
+            textBoxOutputSize.Text = px1.OutImage.Width.ToString() + "x" + px1.OutImage.Height.ToString();
         }
 
         private void buttonSaveOutput_Click(object sender, EventArgs e)
@@ -58,39 +58,68 @@ namespace TrovePixelArtTool
         private void buttonConvertColors_Click(object sender, EventArgs e)
         {
             Blocks b1 = new Blocks();
-            Bitmap OutputRecolored = new Bitmap(px1.PixelArtResolution.X, px1.PixelArtResolution.Y);
-            //Color newColor;
+            Bitmap OutputRecolored = new Bitmap(px1.OutImage.Width, px1.OutImage.Height);
+            double minDelta=1000, newDelta;
+            PixelArt.CIELab TempCL;
+            string blockName = "";
+            Blocks.Block tempBlock = new Blocks.Block();
 
-            /*if (checkBoxStandard.Checked)
+
+            for (int y = 0; y < px1.OutImage.Height; y++)
             {
-                b1.InitializeStandard();
-            }
-
-            if (checkBoxMetalic.Checked)
-            {
-                b1.InitializeMetalic();
-            }
-
-            if (checkBoxGlass.Checked)
-            {
-                b1.InitializeGlass();
-            }
-
-            if (checkBoxGlowing.Checked)
-            {
-                b1.InitializeGlowing();
-            }*/
-
-
-            for (int y = 0; y < px1.PixelArtResolution.Y; y++)
-            {
-                for (int x = 0; x < px1.PixelArtResolution.X; x++)
+                for (int x = 0; x < px1.OutImage.Width; x++)
                 {
-                    px1.RGBtoLAB(x, y);
-                    //OutputRecolored.SetPixel(x, y, newColor);
+                    TempCL = px1.RGBtoLAB(x, y);
+
+                    if(checkBoxStandard.Checked) foreach (Blocks.Block block in b1.Standard)
+                    {
+                        newDelta = px1.DeltaE(TempCL, block.CL);
+                        if (newDelta < minDelta)
+                        {
+                            minDelta = newDelta;
+                            blockName = block.Color;
+                        }
+                    }
+
+                    if (checkBoxMetalic.Checked) foreach (Blocks.Block block in b1.Metalic)
+                        {
+                            newDelta = px1.DeltaE(TempCL, block.CL);
+                            if (newDelta < minDelta)
+                            {
+                                minDelta = newDelta;
+                                blockName = block.Color;
+                            }
+                        }
+
+                    if (checkBoxGlass.Checked) foreach (Blocks.Block block in b1.Glass)
+                        {
+                            newDelta = px1.DeltaE(TempCL, block.CL);
+                            if (newDelta < minDelta)
+                            {
+                                minDelta = newDelta;
+                                blockName = block.Color;
+                            }
+                        }
+
+                    if (checkBoxGlowing.Checked) foreach (Blocks.Block block in b1.Glowing)
+                        {
+                            newDelta = px1.DeltaE(TempCL, block.CL);
+                            if (newDelta < minDelta)
+                            {
+                                minDelta = newDelta;
+                                blockName = block.Color;
+                            }
+                        }
+                    if (b1.Standard.Any(block => block.Color == blockName)) tempBlock = b1.Standard.Find(block => block.Color.Contains(blockName));
+                    if (b1.Metalic.Any(block => block.Color == blockName)) tempBlock = b1.Metalic.Find(block => block.Color.Contains(blockName));
+                    if (b1.Glass.Any(block => block.Color == blockName)) tempBlock = b1.Glass.Find(block => block.Color.Contains(blockName));
+                    if (b1.Glowing.Any(block => block.Color == blockName)) tempBlock = b1.Glowing.Find(block => block.Color.Contains(blockName));
+
+                    OutputRecolored.SetPixel(x, y, Color.FromArgb(tempBlock.R, tempBlock.G, tempBlock.B));
+                    minDelta = 1000;
                 }
-                Console.Write("\n");
             }
+            pictureBoxOutputPixelArt.Image = OutputRecolored;
         }
     }
 }
