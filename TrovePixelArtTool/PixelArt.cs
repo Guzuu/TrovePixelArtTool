@@ -53,23 +53,23 @@ namespace TrovePixelArtTool
             var_B = (OutImage.GetPixel(x, y).B / 255.0);
 
             if (var_R > 0.04045) var_R = Math.Pow((var_R + 0.055) / 1.055, 2.4);
-            else var_R = var_R / 12.92;
+            else var_R /= 12.92;
             if (var_G > 0.04045) var_G = Math.Pow((var_G + 0.055) / 1.055, 2.4);
-            else var_G = var_G / 12.92;
+            else var_G /= 12.92;
             if (var_B > 0.04045) var_B = Math.Pow((var_B + 0.055) / 1.055, 2.4);
-            else var_B = var_B / 12.92;
+            else var_B /= 12.92;
 
-            var_R = var_R * 100.0;
-            var_G = var_G * 100.0;
-            var_B = var_B * 100.0;
+            var_R *= 100.0;
+            var_G *= 100.0;
+            var_B *= 100.0;
 
             X = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805;
             Y = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722;
             Z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505;
 
-            X = X / ref_X;
-            Y = Y / ref_Y;
-            Z = Z / ref_Z;
+            X /= ref_X;
+            Y /= ref_Y;
+            Z /= ref_Z;
 
             if (X > 0.008856) X = Math.Pow(X, (1.0 / 3.0));
             else X = (7.787 * X) + (16.0 / 116.0);
@@ -95,23 +95,23 @@ namespace TrovePixelArtTool
             var_B = (B / 255.0);
 
             if (var_R > 0.04045) var_R = Math.Pow((var_R + 0.055) / 1.055, 2.4);
-            else var_R = var_R / 12.92;
+            else var_R /= 12.92;
             if (var_G > 0.04045) var_G = Math.Pow((var_G + 0.055) / 1.055, 2.4);
-            else var_G = var_G / 12.92;
+            else var_G /= 12.92;
             if (var_B > 0.04045) var_B = Math.Pow((var_B + 0.055) / 1.055, 2.4);
-            else var_B = var_B / 12.92;
+            else var_B /= 12.92;
 
-            var_R = var_R * 100.0;
-            var_G = var_G * 100.0;
-            var_B = var_B * 100.0;
+            var_R *= 100.0;
+            var_G *= 100.0;
+            var_B *= 100.0;
 
             X = var_R * 0.4124 + var_G * 0.3576 + var_B * 0.1805;
             Y = var_R * 0.2126 + var_G * 0.7152 + var_B * 0.0722;
             Z = var_R * 0.0193 + var_G * 0.1192 + var_B * 0.9505;
 
-            X = X / ref_X;
-            Y = Y / ref_Y;
-            Z = Z / ref_Z;
+            X /= ref_X;
+            Y /= ref_Y;
+            Z /= ref_Z;
 
             if (X > 0.008856) X = Math.Pow(X, (1.0 / 3.0));
             else X = (7.787 * X) + (16.0 / 116.0);
@@ -186,9 +186,9 @@ namespace TrovePixelArtTool
             xSC = 1 + 0.045 * xCY;
             xSH = 1 + 0.015 * xCY * xTX;
             xRT = -1 * Math.Sin(deg2rad(2 * xPH)) * xRC;
-            xDL = xDL / (WHT_L * xSL);
-            xDC = xDC / (WHT_C * xSC);
-            xDH = xDH / (WHT_H * xSH);
+            xDL /= (WHT_L * xSL);
+            xDC /= (WHT_C * xSC);
+            xDH /= (WHT_H * xSH);
 
             return Math.Sqrt(Math.Pow(xDL, 2) + Math.Pow(xDC, 2) + Math.Pow(xDH, 2) + xRT * xDC * xDH);
         }

@@ -57,12 +57,15 @@ namespace TrovePixelArtTool
 
         private void buttonConvertColors_Click(object sender, EventArgs e)
         {
+            dataGridView1.Rows.Clear();
             Blocks b1 = new Blocks();
             Bitmap OutputRecolored = new Bitmap(px1.OutImage.Width, px1.OutImage.Height);
             double minDelta=1000, newDelta;
             PixelArt.CIELab TempCL;
             string blockName = "";
             Blocks.Block tempBlock = new Blocks.Block();
+            Dictionary<Blocks.Block, int> keyValuePairs = new Dictionary<Blocks.Block, int>();
+            
 
 
             for (int y = 0; y < px1.OutImage.Height; y++)
@@ -110,16 +113,30 @@ namespace TrovePixelArtTool
                                 blockName = block.Color;
                             }
                         }
+
                     if (b1.Standard.Any(block => block.Color == blockName)) tempBlock = b1.Standard.Find(block => block.Color.Contains(blockName));
                     if (b1.Metalic.Any(block => block.Color == blockName)) tempBlock = b1.Metalic.Find(block => block.Color.Contains(blockName));
                     if (b1.Glass.Any(block => block.Color == blockName)) tempBlock = b1.Glass.Find(block => block.Color.Contains(blockName));
                     if (b1.Glowing.Any(block => block.Color == blockName)) tempBlock = b1.Glowing.Find(block => block.Color.Contains(blockName));
+
+                    if (!keyValuePairs.ContainsKey(tempBlock)) keyValuePairs.Add(tempBlock, 1);
+                    else keyValuePairs[tempBlock]++;
 
                     OutputRecolored.SetPixel(x, y, Color.FromArgb(tempBlock.R, tempBlock.G, tempBlock.B));
                     minDelta = 1000;
                 }
             }
             pictureBoxOutputPixelArt.Image = OutputRecolored;
+            foreach(KeyValuePair<Blocks.Block, int> pair in keyValuePairs)
+            {
+                DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+
+                row.Cells[0].Value = pair.Value;
+                row.Cells[1].Value = pair.Key.Color;
+                row.Cells[2].Style.BackColor = Color.FromArgb(pair.Key.R, pair.Key.G, pair.Key.B);
+                dataGridView1.Rows.Add(row);
+            }
+            dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Descending);
         }
     }
 }

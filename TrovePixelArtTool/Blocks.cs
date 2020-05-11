@@ -34,7 +34,6 @@ namespace TrovePixelArtTool
             public byte R { get;}
             public byte G { get;}
             public byte B { get;}
-
             public PixelArt.CIELab CL { get; }
         }
 
