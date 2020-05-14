@@ -49,6 +49,7 @@
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonGrid = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPixelArtPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutputPixelArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -148,9 +149,9 @@
             // buttonSaveOutput
             // 
             this.buttonSaveOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSaveOutput.Location = new System.Drawing.Point(683, 529);
+            this.buttonSaveOutput.Location = new System.Drawing.Point(637, 529);
             this.buttonSaveOutput.Name = "buttonSaveOutput";
-            this.buttonSaveOutput.Size = new System.Drawing.Size(201, 62);
+            this.buttonSaveOutput.Size = new System.Drawing.Size(132, 62);
             this.buttonSaveOutput.TabIndex = 8;
             this.buttonSaveOutput.Text = "Save";
             this.buttonSaveOutput.UseVisualStyleBackColor = true;
@@ -258,11 +259,23 @@
             this.ColorValue.Name = "ColorValue";
             this.ColorValue.Width = 40;
             // 
+            // buttonGrid
+            // 
+            this.buttonGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonGrid.Location = new System.Drawing.Point(830, 529);
+            this.buttonGrid.Name = "buttonGrid";
+            this.buttonGrid.Size = new System.Drawing.Size(149, 62);
+            this.buttonGrid.TabIndex = 12;
+            this.buttonGrid.Text = "Grid";
+            this.buttonGrid.UseVisualStyleBackColor = true;
+            this.buttonGrid.Click += new System.EventHandler(this.buttonGrid_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1255, 613);
+            this.Controls.Add(this.buttonGrid);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonConvertColors);
             this.Controls.Add(this.groupBoxBlockTypes);
@@ -311,6 +324,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorValue;
+        private System.Windows.Forms.Button buttonGrid;
     }
 }
 

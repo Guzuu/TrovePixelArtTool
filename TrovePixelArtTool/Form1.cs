@@ -18,6 +18,7 @@ namespace TrovePixelArtTool
             InitializeComponent();
         }
 
+        Form2 f2 = new Form2();
         PixelArt px1;
 
         private void buttonOpenFile_Click(object sender, EventArgs e)
@@ -33,12 +34,6 @@ namespace TrovePixelArtTool
 
             textBoxInputSize.Text = px1.srcImage.Width.ToString()+"x"+ px1.srcImage.Height.ToString();
             textBoxOutputSize.Text = textBoxInputSize.Text;
-
-
-            
-
-
-
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -65,11 +60,15 @@ namespace TrovePixelArtTool
             string blockName = "";
             Blocks.Block tempBlock = new Blocks.Block();
             Dictionary<Blocks.Block, int> keyValuePairs = new Dictionary<Blocks.Block, int>();
-            
+            Color c1;
 
+            f2.dataGridViewLayout.ColumnCount = px1.OutImage.Width;
+            f2.dataGridViewLayout.RowCount = px1.OutImage.Height;
 
             for (int y = 0; y < px1.OutImage.Height; y++)
             {
+                DataGridViewRow row = new DataGridViewRow();
+
                 for (int x = 0; x < px1.OutImage.Width; x++)
                 {
                     TempCL = px1.RGBtoLAB(x, y);
@@ -122,7 +121,12 @@ namespace TrovePixelArtTool
                     if (!keyValuePairs.ContainsKey(tempBlock)) keyValuePairs.Add(tempBlock, 1);
                     else keyValuePairs[tempBlock]++;
 
-                    OutputRecolored.SetPixel(x, y, Color.FromArgb(tempBlock.R, tempBlock.G, tempBlock.B));
+                    c1 = Color.FromArgb(tempBlock.R, tempBlock.G, tempBlock.B);
+
+                    OutputRecolored.SetPixel(x, y, c1);
+                    
+                    f2.dataGridViewLayout[x, y].Style.BackColor = c1;
+
                     minDelta = 1000;
                 }
             }
@@ -137,6 +141,11 @@ namespace TrovePixelArtTool
                 dataGridView1.Rows.Add(row);
             }
             dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Descending);
+        }
+
+        private void buttonGrid_Click(object sender, EventArgs e)
+        {
+            f2.Show();
         }
     }
 }
