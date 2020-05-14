@@ -46,10 +46,11 @@
             this.checkBoxStandard = new System.Windows.Forms.CheckBox();
             this.buttonConvertColors = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.buttonGrid = new System.Windows.Forms.Button();
+            this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.buttonGrid = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPixelArtPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutputPixelArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -60,7 +61,7 @@
             // buttonOpenFile
             // 
             this.buttonOpenFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOpenFile.Location = new System.Drawing.Point(134, 529);
+            this.buttonOpenFile.Location = new System.Drawing.Point(24, 521);
             this.buttonOpenFile.Name = "buttonOpenFile";
             this.buttonOpenFile.Size = new System.Drawing.Size(201, 62);
             this.buttonOpenFile.TabIndex = 0;
@@ -74,7 +75,7 @@
             // 
             // pictureBoxPixelArtPreview
             // 
-            this.pictureBoxPixelArtPreview.Location = new System.Drawing.Point(56, 93);
+            this.pictureBoxPixelArtPreview.Location = new System.Drawing.Point(24, 75);
             this.pictureBoxPixelArtPreview.MaximumSize = new System.Drawing.Size(400, 400);
             this.pictureBoxPixelArtPreview.Name = "pictureBoxPixelArtPreview";
             this.pictureBoxPixelArtPreview.Size = new System.Drawing.Size(400, 400);
@@ -84,7 +85,7 @@
             // 
             // pictureBoxOutputPixelArt
             // 
-            this.pictureBoxOutputPixelArt.Location = new System.Drawing.Point(579, 93);
+            this.pictureBoxOutputPixelArt.Location = new System.Drawing.Point(547, 75);
             this.pictureBoxOutputPixelArt.MaximumSize = new System.Drawing.Size(400, 400);
             this.pictureBoxOutputPixelArt.MinimumSize = new System.Drawing.Size(400, 400);
             this.pictureBoxOutputPixelArt.Name = "pictureBoxOutputPixelArt";
@@ -97,7 +98,7 @@
             // 
             this.labelInput.AutoSize = true;
             this.labelInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelInput.Location = new System.Drawing.Point(50, 43);
+            this.labelInput.Location = new System.Drawing.Point(18, 25);
             this.labelInput.Name = "labelInput";
             this.labelInput.Size = new System.Drawing.Size(157, 31);
             this.labelInput.TabIndex = 3;
@@ -107,7 +108,7 @@
             // 
             this.labelOutput.AutoSize = true;
             this.labelOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelOutput.Location = new System.Drawing.Point(573, 43);
+            this.labelOutput.Location = new System.Drawing.Point(541, 25);
             this.labelOutput.Name = "labelOutput";
             this.labelOutput.Size = new System.Drawing.Size(196, 31);
             this.labelOutput.TabIndex = 4;
@@ -116,7 +117,7 @@
             // textBoxInputSize
             // 
             this.textBoxInputSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxInputSize.Location = new System.Drawing.Point(341, 46);
+            this.textBoxInputSize.Location = new System.Drawing.Point(309, 28);
             this.textBoxInputSize.Name = "textBoxInputSize";
             this.textBoxInputSize.ReadOnly = true;
             this.textBoxInputSize.Size = new System.Drawing.Size(115, 31);
@@ -126,7 +127,7 @@
             // textBoxOutputSize
             // 
             this.textBoxOutputSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxOutputSize.Location = new System.Drawing.Point(864, 46);
+            this.textBoxOutputSize.Location = new System.Drawing.Point(832, 28);
             this.textBoxOutputSize.Name = "textBoxOutputSize";
             this.textBoxOutputSize.ReadOnly = true;
             this.textBoxOutputSize.Size = new System.Drawing.Size(115, 31);
@@ -136,7 +137,7 @@
             // trackBar1
             // 
             this.trackBar1.Enabled = false;
-            this.trackBar1.Location = new System.Drawing.Point(495, 93);
+            this.trackBar1.Location = new System.Drawing.Point(463, 75);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
@@ -149,7 +150,7 @@
             // buttonSaveOutput
             // 
             this.buttonSaveOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSaveOutput.Location = new System.Drawing.Point(637, 529);
+            this.buttonSaveOutput.Location = new System.Drawing.Point(605, 511);
             this.buttonSaveOutput.Name = "buttonSaveOutput";
             this.buttonSaveOutput.Size = new System.Drawing.Size(132, 62);
             this.buttonSaveOutput.TabIndex = 8;
@@ -167,7 +168,7 @@
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxGlass);
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxMetalic);
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxStandard);
-            this.groupBoxBlockTypes.Location = new System.Drawing.Point(462, 338);
+            this.groupBoxBlockTypes.Location = new System.Drawing.Point(430, 320);
             this.groupBoxBlockTypes.Name = "groupBoxBlockTypes";
             this.groupBoxBlockTypes.Size = new System.Drawing.Size(111, 155);
             this.groupBoxBlockTypes.TabIndex = 9;
@@ -221,7 +222,7 @@
             // buttonConvertColors
             // 
             this.buttonConvertColors.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonConvertColors.Location = new System.Drawing.Point(405, 529);
+            this.buttonConvertColors.Location = new System.Drawing.Point(373, 511);
             this.buttonConvertColors.Name = "buttonConvertColors";
             this.buttonConvertColors.Size = new System.Drawing.Size(201, 62);
             this.buttonConvertColors.TabIndex = 10;
@@ -233,19 +234,38 @@
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ID,
             this.Count,
             this.ColorName,
             this.ColorValue});
-            this.dataGridView1.Location = new System.Drawing.Point(997, 12);
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.dataGridView1.Location = new System.Drawing.Point(969, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(246, 589);
+            this.dataGridView1.Size = new System.Drawing.Size(286, 613);
             this.dataGridView1.TabIndex = 11;
+            // 
+            // buttonGrid
+            // 
+            this.buttonGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonGrid.Location = new System.Drawing.Point(813, 511);
+            this.buttonGrid.Name = "buttonGrid";
+            this.buttonGrid.Size = new System.Drawing.Size(134, 62);
+            this.buttonGrid.TabIndex = 12;
+            this.buttonGrid.Text = "Grid";
+            this.buttonGrid.UseVisualStyleBackColor = true;
+            this.buttonGrid.Click += new System.EventHandler(this.buttonGrid_Click);
+            // 
+            // ID
+            // 
+            this.ID.HeaderText = "ID";
+            this.ID.Name = "ID";
+            this.ID.Width = 40;
             // 
             // Count
             // 
             this.Count.HeaderText = "Count";
             this.Count.Name = "Count";
-            this.Count.Width = 50;
+            this.Count.Width = 60;
             // 
             // ColorName
             // 
@@ -257,18 +277,7 @@
             // 
             this.ColorValue.HeaderText = "Color";
             this.ColorValue.Name = "ColorValue";
-            this.ColorValue.Width = 40;
-            // 
-            // buttonGrid
-            // 
-            this.buttonGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonGrid.Location = new System.Drawing.Point(830, 529);
-            this.buttonGrid.Name = "buttonGrid";
-            this.buttonGrid.Size = new System.Drawing.Size(149, 62);
-            this.buttonGrid.TabIndex = 12;
-            this.buttonGrid.Text = "Grid";
-            this.buttonGrid.UseVisualStyleBackColor = true;
-            this.buttonGrid.Click += new System.EventHandler(this.buttonGrid_Click);
+            this.ColorValue.Width = 50;
             // 
             // Form1
             // 
@@ -321,10 +330,11 @@
         private System.Windows.Forms.CheckBox checkBoxStandard;
         private System.Windows.Forms.Button buttonConvertColors;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button buttonGrid;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorValue;
-        private System.Windows.Forms.Button buttonGrid;
     }
 }
 

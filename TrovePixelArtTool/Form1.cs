@@ -57,7 +57,6 @@ namespace TrovePixelArtTool
             Bitmap OutputRecolored = new Bitmap(px1.OutImage.Width, px1.OutImage.Height);
             double minDelta=1000, newDelta;
             PixelArt.CIELab TempCL;
-            string blockName = "";
             Blocks.Block tempBlock = new Blocks.Block();
             Dictionary<Blocks.Block, int> keyValuePairs = new Dictionary<Blocks.Block, int>();
             Color c1;
@@ -79,7 +78,7 @@ namespace TrovePixelArtTool
                         if (newDelta < minDelta)
                         {
                             minDelta = newDelta;
-                            blockName = block.Color;
+                            tempBlock = block;
                         }
                     }
 
@@ -89,7 +88,7 @@ namespace TrovePixelArtTool
                             if (newDelta < minDelta)
                             {
                                 minDelta = newDelta;
-                                blockName = block.Color;
+                                tempBlock = block;
                             }
                         }
 
@@ -99,7 +98,7 @@ namespace TrovePixelArtTool
                             if (newDelta < minDelta)
                             {
                                 minDelta = newDelta;
-                                blockName = block.Color;
+                                tempBlock = block;
                             }
                         }
 
@@ -109,14 +108,9 @@ namespace TrovePixelArtTool
                             if (newDelta < minDelta)
                             {
                                 minDelta = newDelta;
-                                blockName = block.Color;
+                                tempBlock = block;
                             }
                         }
-
-                    if (b1.Standard.Any(block => block.Color == blockName)) tempBlock = b1.Standard.Find(block => block.Color.Contains(blockName));
-                    if (b1.Metalic.Any(block => block.Color == blockName)) tempBlock = b1.Metalic.Find(block => block.Color.Contains(blockName));
-                    if (b1.Glass.Any(block => block.Color == blockName)) tempBlock = b1.Glass.Find(block => block.Color.Contains(blockName));
-                    if (b1.Glowing.Any(block => block.Color == blockName)) tempBlock = b1.Glowing.Find(block => block.Color.Contains(blockName));
 
                     if (!keyValuePairs.ContainsKey(tempBlock)) keyValuePairs.Add(tempBlock, 1);
                     else keyValuePairs[tempBlock]++;
@@ -124,8 +118,11 @@ namespace TrovePixelArtTool
                     c1 = Color.FromArgb(tempBlock.R, tempBlock.G, tempBlock.B);
 
                     OutputRecolored.SetPixel(x, y, c1);
-                    
+
+                    //performance issue
                     f2.dataGridViewLayout[x, y].Style.BackColor = c1;
+                    if (tempBlock.CL.L < 30) f2.dataGridViewLayout[x, y].Style.ForeColor = Color.White;
+                    f2.dataGridViewLayout[x, y].Value = tempBlock.ID;
 
                     minDelta = 1000;
                 }
@@ -135,16 +132,18 @@ namespace TrovePixelArtTool
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
 
-                row.Cells[0].Value = pair.Value;
-                row.Cells[1].Value = pair.Key.Color;
-                row.Cells[2].Style.BackColor = Color.FromArgb(pair.Key.R, pair.Key.G, pair.Key.B);
+                row.Cells[0].Value = pair.Key.ID;
+                row.Cells[1].Value = pair.Value;
+                row.Cells[2].Value = pair.Key.Color;
+                row.Cells[3].Style.BackColor = Color.FromArgb(pair.Key.R, pair.Key.G, pair.Key.B);
                 dataGridView1.Rows.Add(row);
             }
-            dataGridView1.Sort(dataGridView1.Columns[0], ListSortDirection.Descending);
+            dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Descending);
         }
 
         private void buttonGrid_Click(object sender, EventArgs e)
         {
+
             f2.Show();
         }
     }

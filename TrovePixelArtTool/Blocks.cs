@@ -12,6 +12,7 @@ namespace TrovePixelArtTool
     {
         public Blocks()
         {
+            BlockID = 0;
             Standard = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(@"../../BlockTypes/Standard.json"));
             Metalic = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(@"../../BlockTypes/Metalic.json"));
             Glass = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(@"../../BlockTypes/Glass.json"));
@@ -27,6 +28,8 @@ namespace TrovePixelArtTool
                 this.G = G;
                 this.B = B;
 
+                this.ID = BlockID;
+                BlockID++;
                 CL = PixelArt.RGBtoLAB(R, G, B);
             }
 
@@ -34,6 +37,8 @@ namespace TrovePixelArtTool
             public byte R { get;}
             public byte G { get;}
             public byte B { get;}
+
+            public int ID { get; set; }
             public PixelArt.CIELab CL { get; }
         }
 
@@ -41,5 +46,6 @@ namespace TrovePixelArtTool
         public List<Block> Metalic { get; set; }
         public List<Block> Glass { get; set; }
         public List<Block> Glowing { get; set; }
-    }
+        public static int BlockID { get; set; }
+}
 }
