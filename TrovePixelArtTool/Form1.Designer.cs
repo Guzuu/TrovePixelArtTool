@@ -46,11 +46,16 @@
             this.checkBoxStandard = new System.Windows.Forms.CheckBox();
             this.buttonConvertColors = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.buttonGrid = new System.Windows.Forms.Button();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Count = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.buttonGrid = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.progressBarGenerate = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPixelArtPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutputPixelArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -61,7 +66,7 @@
             // buttonOpenFile
             // 
             this.buttonOpenFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOpenFile.Location = new System.Drawing.Point(24, 521);
+            this.buttonOpenFile.Location = new System.Drawing.Point(45, 513);
             this.buttonOpenFile.Name = "buttonOpenFile";
             this.buttonOpenFile.Size = new System.Drawing.Size(201, 62);
             this.buttonOpenFile.TabIndex = 0;
@@ -75,7 +80,7 @@
             // 
             // pictureBoxPixelArtPreview
             // 
-            this.pictureBoxPixelArtPreview.Location = new System.Drawing.Point(24, 75);
+            this.pictureBoxPixelArtPreview.Location = new System.Drawing.Point(22, 77);
             this.pictureBoxPixelArtPreview.MaximumSize = new System.Drawing.Size(400, 400);
             this.pictureBoxPixelArtPreview.Name = "pictureBoxPixelArtPreview";
             this.pictureBoxPixelArtPreview.Size = new System.Drawing.Size(400, 400);
@@ -85,7 +90,7 @@
             // 
             // pictureBoxOutputPixelArt
             // 
-            this.pictureBoxOutputPixelArt.Location = new System.Drawing.Point(547, 75);
+            this.pictureBoxOutputPixelArt.Location = new System.Drawing.Point(591, 77);
             this.pictureBoxOutputPixelArt.MaximumSize = new System.Drawing.Size(400, 400);
             this.pictureBoxOutputPixelArt.MinimumSize = new System.Drawing.Size(400, 400);
             this.pictureBoxOutputPixelArt.Name = "pictureBoxOutputPixelArt";
@@ -98,17 +103,17 @@
             // 
             this.labelInput.AutoSize = true;
             this.labelInput.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelInput.Location = new System.Drawing.Point(18, 25);
+            this.labelInput.Location = new System.Drawing.Point(16, 27);
             this.labelInput.Name = "labelInput";
-            this.labelInput.Size = new System.Drawing.Size(157, 31);
+            this.labelInput.Size = new System.Drawing.Size(182, 31);
             this.labelInput.TabIndex = 3;
-            this.labelInput.Text = "Input Image";
+            this.labelInput.Text = "Source Image";
             // 
             // labelOutput
             // 
             this.labelOutput.AutoSize = true;
             this.labelOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.labelOutput.Location = new System.Drawing.Point(541, 25);
+            this.labelOutput.Location = new System.Drawing.Point(585, 27);
             this.labelOutput.Name = "labelOutput";
             this.labelOutput.Size = new System.Drawing.Size(196, 31);
             this.labelOutput.TabIndex = 4;
@@ -117,7 +122,7 @@
             // textBoxInputSize
             // 
             this.textBoxInputSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxInputSize.Location = new System.Drawing.Point(309, 28);
+            this.textBoxInputSize.Location = new System.Drawing.Point(307, 30);
             this.textBoxInputSize.Name = "textBoxInputSize";
             this.textBoxInputSize.ReadOnly = true;
             this.textBoxInputSize.Size = new System.Drawing.Size(115, 31);
@@ -127,7 +132,7 @@
             // textBoxOutputSize
             // 
             this.textBoxOutputSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBoxOutputSize.Location = new System.Drawing.Point(832, 28);
+            this.textBoxOutputSize.Location = new System.Drawing.Point(876, 30);
             this.textBoxOutputSize.Name = "textBoxOutputSize";
             this.textBoxOutputSize.ReadOnly = true;
             this.textBoxOutputSize.Size = new System.Drawing.Size(115, 31);
@@ -137,7 +142,7 @@
             // trackBar1
             // 
             this.trackBar1.Enabled = false;
-            this.trackBar1.Location = new System.Drawing.Point(463, 75);
+            this.trackBar1.Location = new System.Drawing.Point(484, 77);
             this.trackBar1.Maximum = 100;
             this.trackBar1.Minimum = 1;
             this.trackBar1.Name = "trackBar1";
@@ -150,9 +155,9 @@
             // buttonSaveOutput
             // 
             this.buttonSaveOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSaveOutput.Location = new System.Drawing.Point(605, 511);
+            this.buttonSaveOutput.Location = new System.Drawing.Point(743, 513);
             this.buttonSaveOutput.Name = "buttonSaveOutput";
-            this.buttonSaveOutput.Size = new System.Drawing.Size(132, 62);
+            this.buttonSaveOutput.Size = new System.Drawing.Size(75, 62);
             this.buttonSaveOutput.TabIndex = 8;
             this.buttonSaveOutput.Text = "Save";
             this.buttonSaveOutput.UseVisualStyleBackColor = true;
@@ -168,7 +173,7 @@
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxGlass);
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxMetalic);
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxStandard);
-            this.groupBoxBlockTypes.Location = new System.Drawing.Point(430, 320);
+            this.groupBoxBlockTypes.Location = new System.Drawing.Point(451, 322);
             this.groupBoxBlockTypes.Name = "groupBoxBlockTypes";
             this.groupBoxBlockTypes.Size = new System.Drawing.Size(111, 155);
             this.groupBoxBlockTypes.TabIndex = 9;
@@ -192,9 +197,9 @@
             this.checkBoxGlass.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.checkBoxGlass.Location = new System.Drawing.Point(6, 87);
             this.checkBoxGlass.Name = "checkBoxGlass";
-            this.checkBoxGlass.Size = new System.Drawing.Size(75, 28);
+            this.checkBoxGlass.Size = new System.Drawing.Size(87, 28);
             this.checkBoxGlass.TabIndex = 2;
-            this.checkBoxGlass.Text = "Glass";
+            this.checkBoxGlass.Text = "Glass *";
             this.checkBoxGlass.UseVisualStyleBackColor = true;
             // 
             // checkBoxMetalic
@@ -222,7 +227,7 @@
             // buttonConvertColors
             // 
             this.buttonConvertColors.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonConvertColors.Location = new System.Drawing.Point(373, 511);
+            this.buttonConvertColors.Location = new System.Drawing.Point(400, 513);
             this.buttonConvertColors.Name = "buttonConvertColors";
             this.buttonConvertColors.Size = new System.Drawing.Size(201, 62);
             this.buttonConvertColors.TabIndex = 10;
@@ -239,51 +244,112 @@
             this.ColorName,
             this.ColorValue});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(969, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(1011, 0);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(286, 613);
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.Size = new System.Drawing.Size(244, 613);
             this.dataGridView1.TabIndex = 11;
-            // 
-            // buttonGrid
-            // 
-            this.buttonGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonGrid.Location = new System.Drawing.Point(813, 511);
-            this.buttonGrid.Name = "buttonGrid";
-            this.buttonGrid.Size = new System.Drawing.Size(134, 62);
-            this.buttonGrid.TabIndex = 12;
-            this.buttonGrid.Text = "Grid";
-            this.buttonGrid.UseVisualStyleBackColor = true;
-            this.buttonGrid.Click += new System.EventHandler(this.buttonGrid_Click);
             // 
             // ID
             // 
             this.ID.HeaderText = "ID";
             this.ID.Name = "ID";
+            this.ID.ReadOnly = true;
             this.ID.Width = 40;
             // 
             // Count
             // 
             this.Count.HeaderText = "Count";
             this.Count.Name = "Count";
+            this.Count.ReadOnly = true;
             this.Count.Width = 60;
             // 
             // ColorName
             // 
             this.ColorName.HeaderText = "Color Name";
             this.ColorName.Name = "ColorName";
+            this.ColorName.ReadOnly = true;
             this.ColorName.Width = 90;
             // 
             // ColorValue
             // 
             this.ColorValue.HeaderText = "Color";
             this.ColorValue.Name = "ColorValue";
+            this.ColorValue.ReadOnly = true;
             this.ColorValue.Width = 50;
+            // 
+            // buttonGrid
+            // 
+            this.buttonGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonGrid.Location = new System.Drawing.Point(834, 513);
+            this.buttonGrid.Name = "buttonGrid";
+            this.buttonGrid.Size = new System.Drawing.Size(134, 62);
+            this.buttonGrid.TabIndex = 12;
+            this.buttonGrid.Text = "Block Layout";
+            this.buttonGrid.UseVisualStyleBackColor = true;
+            this.buttonGrid.Click += new System.EventHandler(this.buttonGrid_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(498, 588);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(507, 16);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "* Transparency not taken into account. Glass color is correct but solid, 100% opa" +
+    "que.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(873, 11);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(75, 16);
+            this.label2.TabIndex = 14;
+            this.label2.Text = "Resolution:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label3.Location = new System.Drawing.Point(304, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 16);
+            this.label3.TabIndex = 15;
+            this.label3.Text = "Resolution:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label4.Location = new System.Drawing.Point(454, 58);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(105, 16);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Scale the image";
+            // 
+            // progressBarGenerate
+            // 
+            this.progressBarGenerate.Location = new System.Drawing.Point(400, 581);
+            this.progressBarGenerate.Name = "progressBarGenerate";
+            this.progressBarGenerate.Size = new System.Drawing.Size(92, 23);
+            this.progressBarGenerate.Step = 1;
+            this.progressBarGenerate.TabIndex = 17;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1255, 613);
+            this.Controls.Add(this.progressBarGenerate);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonGrid);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonConvertColors);
@@ -298,7 +364,8 @@
             this.Controls.Add(this.pictureBoxPixelArtPreview);
             this.Controls.Add(this.buttonOpenFile);
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "PixelArtTool";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPixelArtPreview)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutputPixelArt)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
@@ -335,6 +402,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorValue;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ProgressBar progressBarGenerate;
     }
 }
 

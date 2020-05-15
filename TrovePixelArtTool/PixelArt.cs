@@ -13,13 +13,13 @@ namespace TrovePixelArtTool
     {
         public PixelArt(Bitmap srcImage)
         {
-            this.srcImage = srcImage;
+            this.SrcImage = srcImage;
         }
 
         public Bitmap ScaleImage(int scalar)
         {
-            int width = Convert.ToInt32(srcImage.Width * (0.01f * scalar)); //rozmiar skalowany
-            int height = Convert.ToInt32(srcImage.Height * (0.01f * scalar));
+            int width = Convert.ToInt32(SrcImage.Width * (0.01f * scalar)); //rozmiar skalowany
+            int height = Convert.ToInt32(SrcImage.Height * (0.01f * scalar));
 
             var destRect = new Rectangle(0, 0, width, height);
             var OutputImage = new Bitmap(width, height);
@@ -35,7 +35,7 @@ namespace TrovePixelArtTool
                 using (var wrapMode = new ImageAttributes())
                 {
                     wrapMode.SetWrapMode(WrapMode.Clamp);
-                    graphics.DrawImage(srcImage, destRect, 0, 0, srcImage.Width, srcImage.Height, GraphicsUnit.Pixel, wrapMode);
+                    graphics.DrawImage(SrcImage, destRect, 0, 0, SrcImage.Width, SrcImage.Height, GraphicsUnit.Pixel, wrapMode);
                 }
             }
 
@@ -223,7 +223,7 @@ namespace TrovePixelArtTool
             public double b;
         }
 
-        public Bitmap srcImage { get; private set; }
+        public Bitmap SrcImage { get; private set; }
         public Bitmap OutImage { get; private set; }
     }
 }

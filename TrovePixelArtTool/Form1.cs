@@ -18,21 +18,27 @@ namespace TrovePixelArtTool
             InitializeComponent();
         }
 
-        Form2 f2 = new Form2();
-        PixelArt px1;
+        public Form2 f2 = new Form2();
+        public PixelArt px1;
 
         private void buttonOpenFile_Click(object sender, EventArgs e)
         {
             openFileDialog1.FileName = "Open Image File";
             openFileDialog1.ShowDialog();
-            px1 = new PixelArt(new Bitmap(openFileDialog1.FileName, true));
-
-            pictureBoxPixelArtPreview.Image = px1.srcImage;
-            pictureBoxOutputPixelArt.Image = px1.srcImage;
+            try
+            {
+                px1 = new PixelArt(new Bitmap(openFileDialog1.FileName, true));
+            }
+            catch (ArgumentException)
+            {
+                return;
+            }
+            pictureBoxPixelArtPreview.Image = px1.SrcImage;
+            pictureBoxOutputPixelArt.Image = px1.SrcImage;
             trackBar1.Value = 100;
             trackBar1.Enabled = true;
 
-            textBoxInputSize.Text = px1.srcImage.Width.ToString()+"x"+ px1.srcImage.Height.ToString();
+            textBoxInputSize.Text = px1.SrcImage.Width.ToString()+"x"+ px1.SrcImage.Height.ToString();
             textBoxOutputSize.Text = textBoxInputSize.Text;
         }
 
@@ -52,7 +58,6 @@ namespace TrovePixelArtTool
 
         private void buttonConvertColors_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
             Blocks b1 = new Blocks();
             Bitmap OutputRecolored = new Bitmap(px1.OutImage.Width, px1.OutImage.Height);
             double minDelta=1000, newDelta;
@@ -60,14 +65,17 @@ namespace TrovePixelArtTool
             Blocks.Block tempBlock = new Blocks.Block();
             Dictionary<Blocks.Block, int> keyValuePairs = new Dictionary<Blocks.Block, int>();
             Color c1;
+            progressBarGenerate.Maximum = px1.OutImage.Width * px1.OutImage.Height;
+
+            keyValuePairs.Clear();
+            dataGridView1.Rows.Clear();
+            f2.dataGridViewLayout.Rows.Clear();
 
             f2.dataGridViewLayout.ColumnCount = px1.OutImage.Width;
             f2.dataGridViewLayout.RowCount = px1.OutImage.Height;
 
             for (int y = 0; y < px1.OutImage.Height; y++)
             {
-                DataGridViewRow row = new DataGridViewRow();
-
                 for (int x = 0; x < px1.OutImage.Width; x++)
                 {
                     TempCL = px1.RGBtoLAB(x, y);
@@ -118,33 +126,45 @@ namespace TrovePixelArtTool
                     c1 = Color.FromArgb(tempBlock.R, tempBlock.G, tempBlock.B);
 
                     OutputRecolored.SetPixel(x, y, c1);
-
-                    //performance issue
                     f2.dataGridViewLayout[x, y].Style.BackColor = c1;
-                    if (tempBlock.CL.L < 30) f2.dataGridViewLayout[x, y].Style.ForeColor = Color.White;
+                    if (tempBlock.CL.L < 40) f2.dataGridViewLayout[x, y].Style.ForeColor = Color.White;
                     f2.dataGridViewLayout[x, y].Value = tempBlock.ID;
 
                     minDelta = 1000;
+                    progressBarGenerate.PerformStep();
                 }
             }
+            f2.dataGridViewLayout.AutoResizeColumns();
             pictureBoxOutputPixelArt.Image = OutputRecolored;
             foreach(KeyValuePair<Blocks.Block, int> pair in keyValuePairs)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                DataGridViewRow row2 = (DataGridViewRow)f2.dataGridView1Layout.Rows[0].Clone();
+                Color c2 = Color.FromArgb(pair.Key.R, pair.Key.G, pair.Key.B);
 
                 row.Cells[0].Value = pair.Key.ID;
                 row.Cells[1].Value = pair.Value;
                 row.Cells[2].Value = pair.Key.Color;
-                row.Cells[3].Style.BackColor = Color.FromArgb(pair.Key.R, pair.Key.G, pair.Key.B);
+                row.Cells[3].Style.BackColor = c2;
+
+                row2.Cells[0].Value = pair.Key.ID;
+                row2.Cells[1].Value = pair.Key.Color;
+                row2.Cells[2].Style.BackColor = c2;
                 dataGridView1.Rows.Add(row);
+                f2.dataGridView1Layout.Rows.Add(row2);
             }
             dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Descending);
+            progressBarGenerate.Value = 0;
         }
 
         private void buttonGrid_Click(object sender, EventArgs e)
         {
-
             f2.Show();
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            f2.Dispose();
         }
     }
 }
