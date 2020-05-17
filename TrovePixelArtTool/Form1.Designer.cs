@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.buttonOpenFile = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.pictureBoxPixelArtPreview = new System.Windows.Forms.PictureBox();
@@ -56,6 +57,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.progressBarGenerate = new System.Windows.Forms.ProgressBar();
+            this.label5warning = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPixelArtPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutputPixelArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -66,7 +68,7 @@
             // buttonOpenFile
             // 
             this.buttonOpenFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonOpenFile.Location = new System.Drawing.Point(45, 513);
+            this.buttonOpenFile.Location = new System.Drawing.Point(51, 496);
             this.buttonOpenFile.Name = "buttonOpenFile";
             this.buttonOpenFile.Size = new System.Drawing.Size(201, 62);
             this.buttonOpenFile.TabIndex = 0;
@@ -155,7 +157,7 @@
             // buttonSaveOutput
             // 
             this.buttonSaveOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSaveOutput.Location = new System.Drawing.Point(743, 513);
+            this.buttonSaveOutput.Location = new System.Drawing.Point(749, 496);
             this.buttonSaveOutput.Name = "buttonSaveOutput";
             this.buttonSaveOutput.Size = new System.Drawing.Size(75, 62);
             this.buttonSaveOutput.TabIndex = 8;
@@ -227,7 +229,7 @@
             // buttonConvertColors
             // 
             this.buttonConvertColors.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonConvertColors.Location = new System.Drawing.Point(400, 513);
+            this.buttonConvertColors.Location = new System.Drawing.Point(406, 496);
             this.buttonConvertColors.Name = "buttonConvertColors";
             this.buttonConvertColors.Size = new System.Drawing.Size(201, 62);
             this.buttonConvertColors.TabIndex = 10;
@@ -282,7 +284,7 @@
             // buttonGrid
             // 
             this.buttonGrid.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonGrid.Location = new System.Drawing.Point(834, 513);
+            this.buttonGrid.Location = new System.Drawing.Point(840, 496);
             this.buttonGrid.Name = "buttonGrid";
             this.buttonGrid.Size = new System.Drawing.Size(134, 62);
             this.buttonGrid.TabIndex = 12;
@@ -333,11 +335,24 @@
             // 
             // progressBarGenerate
             // 
-            this.progressBarGenerate.Location = new System.Drawing.Point(400, 581);
+            this.progressBarGenerate.Location = new System.Drawing.Point(12, 581);
             this.progressBarGenerate.Name = "progressBarGenerate";
-            this.progressBarGenerate.Size = new System.Drawing.Size(92, 23);
+            this.progressBarGenerate.Size = new System.Drawing.Size(172, 23);
             this.progressBarGenerate.Step = 1;
+            this.progressBarGenerate.Style = System.Windows.Forms.ProgressBarStyle.Continuous;
             this.progressBarGenerate.TabIndex = 17;
+            // 
+            // label5warning
+            // 
+            this.label5warning.AutoSize = true;
+            this.label5warning.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label5warning.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label5warning.Location = new System.Drawing.Point(732, 58);
+            this.label5warning.Name = "label5warning";
+            this.label5warning.Size = new System.Drawing.Size(259, 16);
+            this.label5warning.TabIndex = 18;
+            this.label5warning.Text = "High resolution takes more time to convert!";
+            this.label5warning.Visible = false;
             // 
             // Form1
             // 
@@ -345,6 +360,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1255, 613);
+            this.Controls.Add(this.label5warning);
             this.Controls.Add(this.progressBarGenerate);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -363,6 +379,7 @@
             this.Controls.Add(this.pictureBoxOutputPixelArt);
             this.Controls.Add(this.pictureBoxPixelArtPreview);
             this.Controls.Add(this.buttonOpenFile);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "PixelArtTool";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
@@ -407,6 +424,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ProgressBar progressBarGenerate;
+        private System.Windows.Forms.Label label5warning;
     }
 }
 

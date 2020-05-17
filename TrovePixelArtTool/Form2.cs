@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace TrovePixelArtTool
@@ -34,13 +28,11 @@ namespace TrovePixelArtTool
             if (dataGridView1Layout.Visible)
             {
                 dataGridView1Layout.Hide();
-                button1.BackColor = Color.Transparent;
                 button1.Text = "Show GUI";
             }
             else
             {
                 dataGridView1Layout.Show();
-                button1.BackColor = Color.LightGray;
                 button1.Text = "Hide GUI";
             }
         }

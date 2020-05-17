@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace TrovePixelArtTool
 {
@@ -40,12 +35,15 @@ namespace TrovePixelArtTool
 
             textBoxInputSize.Text = px1.SrcImage.Width.ToString()+"x"+ px1.SrcImage.Height.ToString();
             textBoxOutputSize.Text = textBoxInputSize.Text;
+            trackBar1_Scroll(sender, e);
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
         {
             pictureBoxOutputPixelArt.Image = px1.ScaleImage(trackBar1.Value);
             textBoxOutputSize.Text = px1.OutImage.Width.ToString() + "x" + px1.OutImage.Height.ToString();
+            if (px1.OutImage.Width * px1.OutImage.Height > 600000) label5warning.Visible = true;
+            else label5warning.Visible = false;
         }
 
         private void buttonSaveOutput_Click(object sender, EventArgs e)
@@ -64,7 +62,9 @@ namespace TrovePixelArtTool
             PixelArt.CIELab TempCL;
             Blocks.Block tempBlock = new Blocks.Block();
             Dictionary<Blocks.Block, int> keyValuePairs = new Dictionary<Blocks.Block, int>();
-            Color c1;
+            Color c1 = Color.Black;
+            Color c2 = px1.OutImage.GetPixel(0, 0);
+
             progressBarGenerate.Maximum = px1.OutImage.Width * px1.OutImage.Height;
 
             keyValuePairs.Clear();
@@ -78,52 +78,60 @@ namespace TrovePixelArtTool
             {
                 for (int x = 0; x < px1.OutImage.Width; x++)
                 {
-                    TempCL = px1.RGBtoLAB(x, y);
-
-                    if(checkBoxStandard.Checked) foreach (Blocks.Block block in b1.Standard)
+                    if (c2 == px1.OutImage.GetPixel(x, y) && x != 0 && y != 0)
                     {
-                        newDelta = px1.DeltaE(TempCL, block.CL);
-                        if (newDelta < minDelta)
-                        {
-                            minDelta = newDelta;
-                            tempBlock = block;
-                        }
+                        keyValuePairs[tempBlock]++;
                     }
+                    else
+                    {
+                        TempCL = px1.RGBtoLAB(x, y);
 
-                    if (checkBoxMetalic.Checked) foreach (Blocks.Block block in b1.Metalic)
-                        {
-                            newDelta = px1.DeltaE(TempCL, block.CL);
-                            if (newDelta < minDelta)
+                        if (checkBoxStandard.Checked) foreach (Blocks.Block block in b1.Standard)
                             {
-                                minDelta = newDelta;
-                                tempBlock = block;
+                                newDelta = px1.DeltaE(TempCL, block.CL);
+                                if (newDelta < minDelta)
+                                {
+                                    minDelta = newDelta;
+                                    tempBlock = block;
+                                }
                             }
-                        }
 
-                    if (checkBoxGlass.Checked) foreach (Blocks.Block block in b1.Glass)
-                        {
-                            newDelta = px1.DeltaE(TempCL, block.CL);
-                            if (newDelta < minDelta)
+                        if (checkBoxMetalic.Checked) foreach (Blocks.Block block in b1.Metalic)
                             {
-                                minDelta = newDelta;
-                                tempBlock = block;
+                                newDelta = px1.DeltaE(TempCL, block.CL);
+                                if (newDelta < minDelta)
+                                {
+                                    minDelta = newDelta;
+                                    tempBlock = block;
+                                }
                             }
-                        }
 
-                    if (checkBoxGlowing.Checked) foreach (Blocks.Block block in b1.Glowing)
-                        {
-                            newDelta = px1.DeltaE(TempCL, block.CL);
-                            if (newDelta < minDelta)
+                        if (checkBoxGlass.Checked) foreach (Blocks.Block block in b1.Glass)
                             {
-                                minDelta = newDelta;
-                                tempBlock = block;
+                                newDelta = px1.DeltaE(TempCL, block.CL);
+                                if (newDelta < minDelta)
+                                {
+                                    minDelta = newDelta;
+                                    tempBlock = block;
+                                }
                             }
-                        }
 
-                    if (!keyValuePairs.ContainsKey(tempBlock)) keyValuePairs.Add(tempBlock, 1);
-                    else keyValuePairs[tempBlock]++;
+                        if (checkBoxGlowing.Checked) foreach (Blocks.Block block in b1.Glowing)
+                            {
+                                newDelta = px1.DeltaE(TempCL, block.CL);
+                                if (newDelta < minDelta)
+                                {
+                                    minDelta = newDelta;
+                                    tempBlock = block;
+                                }
+                            }
 
-                    c1 = Color.FromArgb(tempBlock.R, tempBlock.G, tempBlock.B);
+                        if (!keyValuePairs.ContainsKey(tempBlock)) keyValuePairs.Add(tempBlock, 1);
+                        else keyValuePairs[tempBlock]++;
+
+                        c1 = Color.FromArgb(tempBlock.R, tempBlock.G, tempBlock.B);
+                        c2 = px1.OutImage.GetPixel(x, y);
+                    }
 
                     OutputRecolored.SetPixel(x, y, c1);
                     f2.dataGridViewLayout[x, y].Style.BackColor = c1;
@@ -134,13 +142,14 @@ namespace TrovePixelArtTool
                     progressBarGenerate.PerformStep();
                 }
             }
-            f2.dataGridViewLayout.AutoResizeColumns();
             pictureBoxOutputPixelArt.Image = OutputRecolored;
-            foreach(KeyValuePair<Blocks.Block, int> pair in keyValuePairs)
+            progressBarGenerate.Value = 0;
+            progressBarGenerate.Maximum = keyValuePairs.Count;
+            foreach (KeyValuePair<Blocks.Block, int> pair in keyValuePairs)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 DataGridViewRow row2 = (DataGridViewRow)f2.dataGridView1Layout.Rows[0].Clone();
-                Color c2 = Color.FromArgb(pair.Key.R, pair.Key.G, pair.Key.B);
+                c2 = Color.FromArgb(pair.Key.R, pair.Key.G, pair.Key.B);
 
                 row.Cells[0].Value = pair.Key.ID;
                 row.Cells[1].Value = pair.Value;
@@ -152,8 +161,12 @@ namespace TrovePixelArtTool
                 row2.Cells[2].Style.BackColor = c2;
                 dataGridView1.Rows.Add(row);
                 f2.dataGridView1Layout.Rows.Add(row2);
+
+                progressBarGenerate.PerformStep();
             }
             dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Descending);
+            f2.dataGridView1Layout.Sort(f2.dataGridView1Layout.Columns[0], ListSortDirection.Descending);
+            f2.dataGridViewLayout.AutoResizeColumns();
             progressBarGenerate.Value = 0;
         }
 
