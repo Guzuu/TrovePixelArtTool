@@ -36,6 +36,7 @@ namespace TrovePixelArtTool
             textBoxInputSize.Text = px1.SrcImage.Width.ToString()+"x"+ px1.SrcImage.Height.ToString();
             textBoxOutputSize.Text = textBoxInputSize.Text;
             trackBar1_Scroll(sender, e);
+            buttonConvertColors.Enabled = true;
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -143,8 +144,6 @@ namespace TrovePixelArtTool
                 }
             }
             pictureBoxOutputPixelArt.Image = OutputRecolored;
-            progressBarGenerate.Value = 0;
-            progressBarGenerate.Maximum = keyValuePairs.Count;
             foreach (KeyValuePair<Blocks.Block, int> pair in keyValuePairs)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
@@ -161,13 +160,13 @@ namespace TrovePixelArtTool
                 row2.Cells[2].Style.BackColor = c2;
                 dataGridView1.Rows.Add(row);
                 f2.dataGridView1Layout.Rows.Add(row2);
-
-                progressBarGenerate.PerformStep();
             }
             dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Descending);
             f2.dataGridView1Layout.Sort(f2.dataGridView1Layout.Columns[0], ListSortDirection.Descending);
             f2.dataGridViewLayout.AutoResizeColumns();
             progressBarGenerate.Value = 0;
+            f2.buttonSaveLayout.Enabled = true;
+            buttonSaveOutput.Enabled = true;
         }
 
         private void buttonGrid_Click(object sender, EventArgs e)
@@ -178,6 +177,11 @@ namespace TrovePixelArtTool
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
             f2.Dispose();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("PixelArtTool by Guzuu\nReport any issues by a discord DM:\nDizzy#5556 or 186104843478368256");
         }
     }
 }

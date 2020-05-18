@@ -36,6 +36,8 @@
             this.ColorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.button1 = new System.Windows.Forms.Button();
+            this.buttonSaveLayout = new System.Windows.Forms.Button();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLayout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1Layout)).BeginInit();
             this.SuspendLayout();
@@ -115,7 +117,7 @@
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(12, 415);
+            this.button1.Location = new System.Drawing.Point(0, 427);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 13;
@@ -123,11 +125,29 @@
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // buttonSaveLayout
+            // 
+            this.buttonSaveLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveLayout.Enabled = false;
+            this.buttonSaveLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonSaveLayout.Location = new System.Drawing.Point(654, 409);
+            this.buttonSaveLayout.Name = "buttonSaveLayout";
+            this.buttonSaveLayout.Size = new System.Drawing.Size(121, 32);
+            this.buttonSaveLayout.TabIndex = 20;
+            this.buttonSaveLayout.Text = "Save Layout";
+            this.buttonSaveLayout.UseVisualStyleBackColor = true;
+            this.buttonSaveLayout.Click += new System.EventHandler(this.buttonSaveLayout_Click);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.Filter = "Image file|*.jpeg";
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonSaveLayout);
             this.Controls.Add(this.dataGridView1Layout);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridViewLayout);
@@ -149,5 +169,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorValue;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        public System.Windows.Forms.Button buttonSaveLayout;
     }
 }
