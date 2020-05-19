@@ -13,6 +13,10 @@ namespace TrovePixelArtTool
         public Blocks()
         {
             BlockID = 0;
+            /*Standard = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(Directory.GetCurrentDirectory()+ "../BlockTypes/Standard.json"));
+            Metalic = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(Directory.GetCurrentDirectory() + "../BlockTypes/Metalic.json"));
+            Glass = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(Directory.GetCurrentDirectory() + "../BlockTypes/Glass.json"));
+            Glowing = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(Directory.GetCurrentDirectory() + "../BlockTypes/Glowing.json"));*/
             Standard = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(@"../../BlockTypes/Standard.json"));
             Metalic = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(@"../../BlockTypes/Metalic.json"));
             Glass = JsonConvert.DeserializeObject<List<Block>>(File.ReadAllText(@"../../BlockTypes/Glass.json"));
