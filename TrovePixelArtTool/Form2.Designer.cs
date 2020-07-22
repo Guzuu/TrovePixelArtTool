@@ -69,7 +69,7 @@
             this.dataGridViewLayout.RowTemplate.Height = 26;
             this.dataGridViewLayout.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewLayout.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewLayout.Size = new System.Drawing.Size(800, 450);
+            this.dataGridViewLayout.Size = new System.Drawing.Size(626, 450);
             this.dataGridViewLayout.TabIndex = 0;
             this.dataGridViewLayout.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridLayout_ColumnAdded);
             // 
@@ -148,9 +148,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.buttonSaveLayout);
-            this.Controls.Add(this.dataGridView1Layout);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.dataGridViewLayout);
+            this.Controls.Add(this.dataGridView1Layout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
             this.Text = "PixelArtTool Block Layout";

@@ -189,7 +189,7 @@ namespace TrovePixelArtTool
             return Math.Sqrt(Math.Pow(xDL, 2) + Math.Pow(xDC, 2) + Math.Pow(xDH, 2) + xRT * xDC * xDH);
         }
 
-        double CieLab2Hue(double a, double b)          //Function returns CIE-H° value
+        public double CieLab2Hue(double a, double b)          //Function returns CIE-H° value
         {
             double bias = 0;
             if (a >= 0 && b == 0) return 0;
@@ -202,12 +202,12 @@ namespace TrovePixelArtTool
             return rad2deg(Math.Atan(b / a)) + bias;
         }
 
-        double deg2rad(double deg)
+        public double deg2rad(double deg)
         {
             return deg * Math.PI / 180;
         }
 
-        double rad2deg(double rad)
+        public double rad2deg(double rad)
         {
             return (180 / Math.PI) * rad;
         }

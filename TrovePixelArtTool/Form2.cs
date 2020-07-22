@@ -34,6 +34,7 @@ namespace TrovePixelArtTool
             else
             {
                 dataGridView1Layout.Show();
+                dataGridView1Layout.AutoResizeColumns();
                 buttonSaveLayout.Show();
                 button1.Text = "Hide GUI";
             }

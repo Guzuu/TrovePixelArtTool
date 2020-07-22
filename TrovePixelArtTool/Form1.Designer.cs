@@ -1,4 +1,6 @@
-﻿namespace TrovePixelArtTool
+﻿using System.Threading.Tasks;
+
+namespace TrovePixelArtTool
 {
     partial class Form1
     {
@@ -338,10 +340,12 @@
             // 
             // progressBarGenerate
             // 
+            this.progressBarGenerate.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.progressBarGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.progressBarGenerate.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.progressBarGenerate.Location = new System.Drawing.Point(51, 588);
             this.progressBarGenerate.Name = "progressBarGenerate";
-            this.progressBarGenerate.Size = new System.Drawing.Size(195, 23);
+            this.progressBarGenerate.Size = new System.Drawing.Size(243, 23);
             this.progressBarGenerate.Step = 1;
             this.progressBarGenerate.TabIndex = 17;
             // 
