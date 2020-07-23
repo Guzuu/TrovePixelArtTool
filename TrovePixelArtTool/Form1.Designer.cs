@@ -120,9 +120,9 @@ namespace TrovePixelArtTool
             this.labelOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelOutput.Location = new System.Drawing.Point(585, 27);
             this.labelOutput.Name = "labelOutput";
-            this.labelOutput.Size = new System.Drawing.Size(196, 31);
+            this.labelOutput.Size = new System.Drawing.Size(211, 31);
             this.labelOutput.TabIndex = 4;
-            this.labelOutput.Text = "Output PixelArt";
+            this.labelOutput.Text = "Preview PixelArt";
             // 
             // textBoxInputSize
             // 
@@ -161,11 +161,11 @@ namespace TrovePixelArtTool
             // 
             this.buttonSaveOutput.Enabled = false;
             this.buttonSaveOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSaveOutput.Location = new System.Drawing.Point(782, 496);
+            this.buttonSaveOutput.Location = new System.Drawing.Point(751, 496);
             this.buttonSaveOutput.Name = "buttonSaveOutput";
-            this.buttonSaveOutput.Size = new System.Drawing.Size(69, 62);
+            this.buttonSaveOutput.Size = new System.Drawing.Size(100, 62);
             this.buttonSaveOutput.TabIndex = 8;
-            this.buttonSaveOutput.Text = "Save";
+            this.buttonSaveOutput.Text = "Save Preview";
             this.buttonSaveOutput.UseVisualStyleBackColor = true;
             this.buttonSaveOutput.Click += new System.EventHandler(this.buttonSaveOutput_Click);
             // 
@@ -251,11 +251,11 @@ namespace TrovePixelArtTool
             this.ColorName,
             this.ColorValue});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1.Location = new System.Drawing.Point(1011, 0);
+            this.dataGridView1.Location = new System.Drawing.Point(1040, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersVisible = false;
-            this.dataGridView1.Size = new System.Drawing.Size(244, 613);
+            this.dataGridView1.Size = new System.Drawing.Size(244, 611);
             this.dataGridView1.TabIndex = 11;
             // 
             // ID
@@ -343,7 +343,7 @@ namespace TrovePixelArtTool
             this.progressBarGenerate.AccessibleRole = System.Windows.Forms.AccessibleRole.OutlineButton;
             this.progressBarGenerate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.progressBarGenerate.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.progressBarGenerate.Location = new System.Drawing.Point(51, 588);
+            this.progressBarGenerate.Location = new System.Drawing.Point(51, 586);
             this.progressBarGenerate.Name = "progressBarGenerate";
             this.progressBarGenerate.Size = new System.Drawing.Size(243, 23);
             this.progressBarGenerate.Step = 1;
@@ -365,7 +365,7 @@ namespace TrovePixelArtTool
             // 
             this.buttonInfo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.buttonInfo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonInfo.Location = new System.Drawing.Point(1, 588);
+            this.buttonInfo.Location = new System.Drawing.Point(1, 586);
             this.buttonInfo.Name = "buttonInfo";
             this.buttonInfo.Size = new System.Drawing.Size(44, 23);
             this.buttonInfo.TabIndex = 19;
@@ -378,7 +378,7 @@ namespace TrovePixelArtTool
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1255, 613);
+            this.ClientSize = new System.Drawing.Size(1284, 611);
             this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.label5warning);
             this.Controls.Add(this.progressBarGenerate);

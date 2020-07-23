@@ -28,16 +28,20 @@ namespace TrovePixelArtTool
             public Block(string Color, byte R, byte G, byte B)
             {
                 this.Color = Color;
+
+                this.A = 255;
                 this.R = R;
                 this.G = G;
                 this.B = B;
 
                 this.ID = BlockID;
-                BlockID++;
+                    BlockID++;
+
                 CL = PixelArt.RGBtoLAB(R, G, B);
             }
 
             public string Color { get; }
+            public byte A { get;}
             public byte R { get;}
             public byte G { get;}
             public byte B { get;}

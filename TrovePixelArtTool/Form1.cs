@@ -20,7 +20,7 @@ namespace TrovePixelArtTool
         public Form2 f2 = new Form2();
         public PixelArt px1;
         Dictionary<Blocks.Block, int> keyValuePairs = new Dictionary<Blocks.Block, int>();
-        Blocks.Block[,] DGVPixelArt;
+        public Blocks.Block[,] DGVPixelArt;
 
         private void InitializeBackgroundWorker()
         {
@@ -50,17 +50,27 @@ namespace TrovePixelArtTool
             {
                 for (int x = 0; x < px1.OutImage.Width; x++)
                 {
+                    if(DGVPixelArt[x, y].Color == null)
+                    {
+                        f2.dataGridViewLayout[x, y].Style.BackColor = Color.White;
+                        continue;
+                    }
+
                     f2.dataGridViewLayout[x, y].Style.BackColor = ((Bitmap)e.Result).GetPixel(x, y);
                     if (DGVPixelArt[x, y].CL.L < 40) f2.dataGridViewLayout[x, y].Style.ForeColor = Color.White;
                     f2.dataGridViewLayout[x, y].Value = DGVPixelArt[x, y].ID;
+
+                    f2.dataGridViewLayout.Columns[x].Width = 30;
                 }
+                f2.dataGridViewLayout.Rows[y].Height = 30;
             }
 
             foreach (KeyValuePair<Blocks.Block, int> pair in keyValuePairs)
             {
                 DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
                 DataGridViewRow row2 = (DataGridViewRow)f2.dataGridView1Layout.Rows[0].Clone();
-                Color c = Color.FromArgb(pair.Key.R, pair.Key.G, pair.Key.B);
+
+                Color c = Color.FromArgb(pair.Key.A, pair.Key.R, pair.Key.G, pair.Key.B);
 
                 row.Cells[0].Value = pair.Key.ID;
                 row.Cells[1].Value = pair.Value;
@@ -72,12 +82,10 @@ namespace TrovePixelArtTool
                 row2.Cells[2].Style.BackColor = c;
                 dataGridView1.Rows.Add(row);
                 f2.dataGridView1Layout.Rows.Add(row2);
-
             }
 
             dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Descending);
-            f2.dataGridView1Layout.Sort(f2.dataGridView1Layout.Columns[0], ListSortDirection.Descending);
-            f2.dataGridViewLayout.AutoResizeColumns();
+            f2.dataGridView1Layout.Sort(f2.dataGridView1Layout.Columns[0], ListSortDirection.Ascending);
             progressBarGenerate.Value = 0;
             f2.buttonSaveLayout.Enabled = true;
             buttonSaveOutput.Enabled = true;
@@ -128,7 +136,7 @@ namespace TrovePixelArtTool
 
         private void buttonSaveOutput_Click(object sender, EventArgs e)
         {
-            saveFileDialog1.FileName += "PixelArt" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
+            saveFileDialog1.FileName = "PixelArt" + System.DateTime.Now.ToString("yyyy-MM-dd_HH-mm");
             saveFileDialog1.ShowDialog();
             Console.WriteLine(saveFileDialog1.FileName);
             pictureBoxOutputPixelArt.Image.Save(saveFileDialog1.FileName);
@@ -142,7 +150,7 @@ namespace TrovePixelArtTool
             PixelArt.CIELab TempCL;
             Blocks.Block tempBlock = new Blocks.Block();
             Color c1 = Color.Black;
-            Color c2 = px1.OutImage.GetPixel(0, 0);
+            Color c2 = Color.Transparent;
             int PercentComplete=0, ValueMaximum = px1.OutImage.Width * px1.OutImage.Height, n = 0, HighestPercentReached = 0;
 
             keyValuePairs.Clear();
@@ -151,7 +159,8 @@ namespace TrovePixelArtTool
             {
                 for (int x = 0; x < px1.OutImage.Width; x++)
                 {
-                    if (c2 == px1.OutImage.GetPixel(x, y) && x != 0 && y != 0)
+                    if (px1.OutImage.GetPixel(x, y).ToArgb() == Color.Empty.ToArgb()) continue;
+                    else if (c2 == px1.OutImage.GetPixel(x, y))
                     {
                         keyValuePairs[tempBlock]++;
                     }
@@ -202,7 +211,7 @@ namespace TrovePixelArtTool
                         if (!keyValuePairs.ContainsKey(tempBlock)) keyValuePairs.Add(tempBlock, 1);
                         else keyValuePairs[tempBlock]++;
 
-                        c1 = Color.FromArgb(tempBlock.R, tempBlock.G, tempBlock.B);
+                        c1 = Color.FromArgb(tempBlock.A, tempBlock.R, tempBlock.G, tempBlock.B);
                         c2 = px1.OutImage.GetPixel(x, y);
                     }
 
@@ -252,7 +261,7 @@ namespace TrovePixelArtTool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("PixelArtTool by Guzuu\nReport any issues by a discord DM:\nDizzy#5556 or 186104843478368256");
+            MessageBox.Show("PixelArtTool v1.5 by Guzuu\nReport any issues by a discord DM:\nDizzy#5556 or 186104843478368256");
         }
     }
 }

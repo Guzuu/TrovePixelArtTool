@@ -38,15 +38,20 @@
             this.button1 = new System.Windows.Forms.Button();
             this.buttonSaveLayout = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.buttonZoomIn = new System.Windows.Forms.Button();
+            this.buttonZoomOut = new System.Windows.Forms.Button();
+            this.buttonHideIDs = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLayout)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1Layout)).BeginInit();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dataGridViewLayout
             // 
             this.dataGridViewLayout.AllowUserToResizeColumns = false;
             this.dataGridViewLayout.AllowUserToResizeRows = false;
-            this.dataGridViewLayout.ColumnHeadersHeight = 10;
+            this.dataGridViewLayout.ColumnHeadersHeight = 100;
             this.dataGridViewLayout.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridViewLayout.ColumnHeadersVisible = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -60,7 +65,6 @@
             this.dataGridViewLayout.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewLayout.Location = new System.Drawing.Point(0, 0);
             this.dataGridViewLayout.Margin = new System.Windows.Forms.Padding(3, 3, 3, 500);
-            this.dataGridViewLayout.MultiSelect = false;
             this.dataGridViewLayout.Name = "dataGridViewLayout";
             this.dataGridViewLayout.ReadOnly = true;
             this.dataGridViewLayout.RowHeadersVisible = false;
@@ -69,7 +73,7 @@
             this.dataGridViewLayout.RowTemplate.Height = 26;
             this.dataGridViewLayout.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewLayout.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dataGridViewLayout.Size = new System.Drawing.Size(626, 450);
+            this.dataGridViewLayout.Size = new System.Drawing.Size(1110, 579);
             this.dataGridViewLayout.TabIndex = 0;
             this.dataGridViewLayout.ColumnAdded += new System.Windows.Forms.DataGridViewColumnEventHandler(this.dataGridLayout_ColumnAdded);
             // 
@@ -81,11 +85,11 @@
             this.ColorName,
             this.ColorValue});
             this.dataGridView1Layout.Dock = System.Windows.Forms.DockStyle.Right;
-            this.dataGridView1Layout.Location = new System.Drawing.Point(626, 0);
+            this.dataGridView1Layout.Location = new System.Drawing.Point(1110, 0);
             this.dataGridView1Layout.Name = "dataGridView1Layout";
             this.dataGridView1Layout.ReadOnly = true;
             this.dataGridView1Layout.RowHeadersVisible = false;
-            this.dataGridView1Layout.Size = new System.Drawing.Size(174, 450);
+            this.dataGridView1Layout.Size = new System.Drawing.Size(174, 611);
             this.dataGridView1Layout.TabIndex = 12;
             // 
             // ID
@@ -116,10 +120,10 @@
             this.button1.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(0, 427);
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.Location = new System.Drawing.Point(0, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(106, 32);
             this.button1.TabIndex = 13;
             this.button1.Text = "Hide GUI";
             this.button1.UseVisualStyleBackColor = false;
@@ -127,29 +131,91 @@
             // 
             // buttonSaveLayout
             // 
-            this.buttonSaveLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveLayout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonSaveLayout.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.buttonSaveLayout.Enabled = false;
-            this.buttonSaveLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonSaveLayout.Location = new System.Drawing.Point(654, 409);
+            this.buttonSaveLayout.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonSaveLayout.Location = new System.Drawing.Point(112, 0);
             this.buttonSaveLayout.Name = "buttonSaveLayout";
-            this.buttonSaveLayout.Size = new System.Drawing.Size(121, 32);
+            this.buttonSaveLayout.Size = new System.Drawing.Size(137, 32);
             this.buttonSaveLayout.TabIndex = 20;
             this.buttonSaveLayout.Text = "Save Layout";
-            this.buttonSaveLayout.UseVisualStyleBackColor = true;
+            this.buttonSaveLayout.UseVisualStyleBackColor = false;
             this.buttonSaveLayout.Click += new System.EventHandler(this.buttonSaveLayout_Click);
             // 
             // saveFileDialog1
             // 
             this.saveFileDialog1.Filter = "Image file|*.jpeg";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel1.Controls.Add(this.buttonHideIDs);
+            this.panel1.Controls.Add(this.buttonZoomOut);
+            this.panel1.Controls.Add(this.buttonZoomIn);
+            this.panel1.Controls.Add(this.button1);
+            this.panel1.Controls.Add(this.buttonSaveLayout);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel1.Location = new System.Drawing.Point(0, 579);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(1110, 32);
+            this.panel1.TabIndex = 21;
+            // 
+            // buttonZoomIn
+            // 
+            this.buttonZoomIn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonZoomIn.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonZoomIn.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonZoomIn.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonZoomIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonZoomIn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonZoomIn.Location = new System.Drawing.Point(268, 0);
+            this.buttonZoomIn.Name = "buttonZoomIn";
+            this.buttonZoomIn.Size = new System.Drawing.Size(38, 32);
+            this.buttonZoomIn.TabIndex = 21;
+            this.buttonZoomIn.Text = "+";
+            this.buttonZoomIn.UseVisualStyleBackColor = false;
+            this.buttonZoomIn.Click += new System.EventHandler(this.buttonZoomIn_Click);
+            // 
+            // buttonZoomOut
+            // 
+            this.buttonZoomOut.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonZoomOut.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonZoomOut.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonZoomOut.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonZoomOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonZoomOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonZoomOut.Location = new System.Drawing.Point(312, 0);
+            this.buttonZoomOut.Name = "buttonZoomOut";
+            this.buttonZoomOut.Size = new System.Drawing.Size(38, 32);
+            this.buttonZoomOut.TabIndex = 22;
+            this.buttonZoomOut.Text = "-";
+            this.buttonZoomOut.UseVisualStyleBackColor = false;
+            this.buttonZoomOut.Click += new System.EventHandler(this.buttonZoomOut_Click);
+            // 
+            // buttonHideIDs
+            // 
+            this.buttonHideIDs.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonHideIDs.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.buttonHideIDs.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.buttonHideIDs.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.buttonHideIDs.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonHideIDs.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonHideIDs.Location = new System.Drawing.Point(356, 0);
+            this.buttonHideIDs.Name = "buttonHideIDs";
+            this.buttonHideIDs.Size = new System.Drawing.Size(106, 32);
+            this.buttonHideIDs.TabIndex = 23;
+            this.buttonHideIDs.Text = "Hide IDs";
+            this.buttonHideIDs.UseVisualStyleBackColor = false;
+            this.buttonHideIDs.Click += new System.EventHandler(this.buttonHideIDs_Click);
+            // 
             // Form2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.buttonSaveLayout);
-            this.Controls.Add(this.button1);
+            this.ClientSize = new System.Drawing.Size(1284, 611);
             this.Controls.Add(this.dataGridViewLayout);
+            this.Controls.Add(this.panel1);
             this.Controls.Add(this.dataGridView1Layout);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form2";
@@ -157,6 +223,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form2_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewLayout)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1Layout)).EndInit();
+            this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -171,5 +238,9 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
         public System.Windows.Forms.Button buttonSaveLayout;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button buttonZoomOut;
+        private System.Windows.Forms.Button buttonZoomIn;
+        private System.Windows.Forms.Button buttonHideIDs;
     }
 }
