@@ -43,18 +43,27 @@ namespace TrovePixelArtTool
 
         private void dataGridViewColors_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = (DataGridViewRow)dataGridViewPalette.Rows[0].Clone();
+            try
+            {
+                if (dataGridViewColors.Rows[e.RowIndex].Cells[1].Value == null) throw new Exception();
 
-            row.Cells[0].Style.BackColor = dataGridViewColors.Rows[e.RowIndex].Cells[0].Style.BackColor;
-            row.Cells[1].Value = dataGridViewColors.Rows[e.RowIndex].Cells[1].Value;
-            row.Cells[2].Value = dataGridViewColors.Rows[e.RowIndex].Cells[2].Value;
+                DataGridViewRow row = (DataGridViewRow)dataGridViewPalette.Rows[0].Clone();
 
-            dataGridViewPalette.Rows.Insert(0, row);
-            dataGridViewColors.Rows.RemoveAt(e.RowIndex);
-            Custom.Insert(0, All[e.RowIndex]);
-            All.RemoveAt(e.RowIndex);
-            dataGridViewColors.ClearSelection();
-            dataGridViewPalette.ClearSelection();
+                row.Cells[0].Style.BackColor = dataGridViewColors.Rows[e.RowIndex].Cells[0].Style.BackColor;
+                row.Cells[1].Value = dataGridViewColors.Rows[e.RowIndex].Cells[1].Value;
+                row.Cells[2].Value = dataGridViewColors.Rows[e.RowIndex].Cells[2].Value;
+
+                dataGridViewPalette.Rows.Insert(0, row);
+                dataGridViewColors.Rows.RemoveAt(e.RowIndex);
+                Custom.Insert(0, All[e.RowIndex]);
+                All.RemoveAt(e.RowIndex);
+                dataGridViewColors.ClearSelection();
+                dataGridViewPalette.ClearSelection();
+            }
+            catch(Exception)
+            {
+                return;
+            }
         }
 
         private void buttonClear_Click(object sender, EventArgs e)
@@ -72,18 +81,27 @@ namespace TrovePixelArtTool
 
         private void dataGridViewPalette_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = (DataGridViewRow)dataGridViewColors.Rows[0].Clone();
+            try
+            {
+                if (dataGridViewPalette.Rows[e.RowIndex].Cells[1].Value == null) throw new Exception();
 
-            row.Cells[0].Style.BackColor = dataGridViewPalette.Rows[e.RowIndex].Cells[0].Style.BackColor;
-            row.Cells[1].Value = dataGridViewPalette.Rows[e.RowIndex].Cells[1].Value;
-            row.Cells[2].Value = dataGridViewPalette.Rows[e.RowIndex].Cells[2].Value;
+                DataGridViewRow row = (DataGridViewRow)dataGridViewColors.Rows[0].Clone();
 
-            dataGridViewColors.Rows.Insert(0, row);
-            dataGridViewPalette.Rows.RemoveAt(e.RowIndex);
-            All.Insert(0, Custom[e.RowIndex]);
-            Custom.RemoveAt(e.RowIndex);
-            dataGridViewColors.ClearSelection();
-            dataGridViewPalette.ClearSelection();
+                row.Cells[0].Style.BackColor = dataGridViewPalette.Rows[e.RowIndex].Cells[0].Style.BackColor;
+                row.Cells[1].Value = dataGridViewPalette.Rows[e.RowIndex].Cells[1].Value;
+                row.Cells[2].Value = dataGridViewPalette.Rows[e.RowIndex].Cells[2].Value;
+
+                dataGridViewColors.Rows.Insert(0, row);
+                dataGridViewPalette.Rows.RemoveAt(e.RowIndex);
+                All.Insert(0, Custom[e.RowIndex]);
+                Custom.RemoveAt(e.RowIndex);
+                dataGridViewColors.ClearSelection();
+                dataGridViewPalette.ClearSelection();
+            }
+            catch (Exception)
+            {
+                return;
+            }
         }
 
         private void Form3_FormClosing(object sender, FormClosingEventArgs e)
