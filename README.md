@@ -1,3 +1,3 @@
 # TrovePixelArtTool
 
-### [v1.6 download](https://github.com/Guzuu/TrovePixelArtTool/releases/download/v1.6/TrovePixelArtTool_v1_6.rar)
+### [v2 download](https://github.com/Guzuu/TrovePixelArtTool/releases/download/v2/TrovePixelArtTool_v2.rar)
