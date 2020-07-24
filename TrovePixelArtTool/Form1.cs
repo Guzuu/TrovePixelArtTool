@@ -20,6 +20,7 @@ namespace TrovePixelArtTool
         }
 
         public Form2 f2 = new Form2();
+        public Form3 f3 = new Form3();
         public PixelArt px1;
         Dictionary<Blocks.Block, int> keyValuePairs = new Dictionary<Blocks.Block, int>();
         public Blocks.Block[,] DGVPixelArt;
@@ -227,6 +228,16 @@ namespace TrovePixelArtTool
                                 }
                             }
 
+                        if (checkBoxCustom.Checked) foreach (Blocks.Block block in f3.Custom)
+                            {
+                                newDelta = px1.DeltaE(TempCL, block.CL);
+                                if (newDelta < minDelta)
+                                {
+                                    minDelta = newDelta;
+                                    tempBlock = block;
+                                }
+                            }
+
                         if (!keyValuePairs.ContainsKey(tempBlock)) keyValuePairs.Add(tempBlock, 1);
                         else keyValuePairs[tempBlock]++;
 
@@ -289,6 +300,15 @@ namespace TrovePixelArtTool
                 // Cancel the asynchronous operation.
                 backgroundWorker1.CancelAsync();
             }
+        }
+
+        private void checkBoxCustom_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBoxCustom.Checked)
+            {
+                f3.Show();
+            }
+            else f3.Hide();
         }
     }
 }

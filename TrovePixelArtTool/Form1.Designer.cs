@@ -43,6 +43,7 @@ namespace TrovePixelArtTool
             this.buttonSaveOutput = new System.Windows.Forms.Button();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBoxBlockTypes = new System.Windows.Forms.GroupBox();
+            this.checkBoxCustom = new System.Windows.Forms.CheckBox();
             this.checkBoxGlowing = new System.Windows.Forms.CheckBox();
             this.checkBoxGlass = new System.Windows.Forms.CheckBox();
             this.checkBoxMetalic = new System.Windows.Forms.CheckBox();
@@ -175,16 +176,29 @@ namespace TrovePixelArtTool
             // 
             // groupBoxBlockTypes
             // 
+            this.groupBoxBlockTypes.Controls.Add(this.checkBoxCustom);
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxGlowing);
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxGlass);
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxMetalic);
             this.groupBoxBlockTypes.Controls.Add(this.checkBoxStandard);
-            this.groupBoxBlockTypes.Location = new System.Drawing.Point(451, 322);
+            this.groupBoxBlockTypes.Location = new System.Drawing.Point(448, 296);
             this.groupBoxBlockTypes.Name = "groupBoxBlockTypes";
-            this.groupBoxBlockTypes.Size = new System.Drawing.Size(111, 155);
+            this.groupBoxBlockTypes.Size = new System.Drawing.Size(111, 194);
             this.groupBoxBlockTypes.TabIndex = 9;
             this.groupBoxBlockTypes.TabStop = false;
-            this.groupBoxBlockTypes.Text = "Block Types";
+            this.groupBoxBlockTypes.Text = "Block Palette";
+            // 
+            // checkBoxCustom
+            // 
+            this.checkBoxCustom.AutoSize = true;
+            this.checkBoxCustom.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.checkBoxCustom.Location = new System.Drawing.Point(6, 155);
+            this.checkBoxCustom.Name = "checkBoxCustom";
+            this.checkBoxCustom.Size = new System.Drawing.Size(99, 28);
+            this.checkBoxCustom.TabIndex = 4;
+            this.checkBoxCustom.Text = "Custom";
+            this.checkBoxCustom.UseVisualStyleBackColor = true;
+            this.checkBoxCustom.CheckedChanged += new System.EventHandler(this.checkBoxCustom_CheckedChanged);
             // 
             // checkBoxGlowing
             // 
@@ -447,6 +461,7 @@ namespace TrovePixelArtTool
         private System.Windows.Forms.Label label5warning;
         private System.Windows.Forms.Button buttonInfo;
         private System.Windows.Forms.Button buttonCancel;
+        public System.Windows.Forms.CheckBox checkBoxCustom;
     }
 }
 
