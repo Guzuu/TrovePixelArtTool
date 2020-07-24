@@ -51,7 +51,8 @@ namespace TrovePixelArtTool
 
             dataGridViewPalette.Rows.Insert(0, row);
             dataGridViewColors.Rows.RemoveAt(e.RowIndex);
-            Custom.Add(All[e.RowIndex]);
+            Custom.Insert(0, All[e.RowIndex]);
+            All.RemoveAt(e.RowIndex);
             dataGridViewColors.ClearSelection();
             dataGridViewPalette.ClearSelection();
         }
@@ -79,6 +80,7 @@ namespace TrovePixelArtTool
 
             dataGridViewColors.Rows.Insert(0, row);
             dataGridViewPalette.Rows.RemoveAt(e.RowIndex);
+            All.Insert(0, Custom[e.RowIndex]);
             Custom.RemoveAt(e.RowIndex);
             dataGridViewColors.ClearSelection();
             dataGridViewPalette.ClearSelection();
