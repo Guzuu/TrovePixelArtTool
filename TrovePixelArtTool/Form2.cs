@@ -101,5 +101,20 @@ namespace TrovePixelArtTool
             }
             
         }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridViewLayout.CellBorderStyle = DataGridViewCellBorderStyle.Single;
+        }
+
+        private void radioButton2_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridViewLayout.CellBorderStyle = DataGridViewCellBorderStyle.Raised;
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            dataGridViewLayout.CellBorderStyle = DataGridViewCellBorderStyle.Sunken;
+        }
     }
 }

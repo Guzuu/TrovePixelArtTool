@@ -54,13 +54,13 @@ namespace TrovePixelArtTool
             this.ColorName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColorValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.buttonGrid = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.progressBarGenerate = new System.Windows.Forms.ProgressBar();
             this.label5warning = new System.Windows.Forms.Label();
             this.buttonInfo = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxPixelArtPreview)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxOutputPixelArt)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
@@ -120,9 +120,9 @@ namespace TrovePixelArtTool
             this.labelOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.labelOutput.Location = new System.Drawing.Point(585, 27);
             this.labelOutput.Name = "labelOutput";
-            this.labelOutput.Size = new System.Drawing.Size(211, 31);
+            this.labelOutput.Size = new System.Drawing.Size(225, 31);
             this.labelOutput.TabIndex = 4;
-            this.labelOutput.Text = "Preview PixelArt";
+            this.labelOutput.Text = "Pixel Art Preview ";
             // 
             // textBoxInputSize
             // 
@@ -203,9 +203,9 @@ namespace TrovePixelArtTool
             this.checkBoxGlass.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.checkBoxGlass.Location = new System.Drawing.Point(6, 87);
             this.checkBoxGlass.Name = "checkBoxGlass";
-            this.checkBoxGlass.Size = new System.Drawing.Size(87, 28);
+            this.checkBoxGlass.Size = new System.Drawing.Size(75, 28);
             this.checkBoxGlass.TabIndex = 2;
-            this.checkBoxGlass.Text = "Glass *";
+            this.checkBoxGlass.Text = "Glass";
             this.checkBoxGlass.UseVisualStyleBackColor = true;
             // 
             // checkBoxMetalic
@@ -297,17 +297,6 @@ namespace TrovePixelArtTool
             this.buttonGrid.UseVisualStyleBackColor = true;
             this.buttonGrid.Click += new System.EventHandler(this.buttonGrid_Click);
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label1.Location = new System.Drawing.Point(498, 588);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(507, 16);
-            this.label1.TabIndex = 13;
-            this.label1.Text = "* Transparency not taken into account. Glass color is correct but solid, 100% opa" +
-    "que.";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -373,19 +362,31 @@ namespace TrovePixelArtTool
             this.buttonInfo.UseVisualStyleBackColor = true;
             this.buttonInfo.Click += new System.EventHandler(this.button1_Click);
             // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.buttonCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.buttonCancel.Location = new System.Drawing.Point(300, 586);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(69, 23);
+            this.buttonCancel.TabIndex = 20;
+            this.buttonCancel.Text = "cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.ClientSize = new System.Drawing.Size(1284, 611);
+            this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonInfo);
             this.Controls.Add(this.label5warning);
             this.Controls.Add(this.progressBarGenerate);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.buttonGrid);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonConvertColors);
@@ -439,13 +440,13 @@ namespace TrovePixelArtTool
         private System.Windows.Forms.DataGridViewTextBoxColumn Count;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColorValue;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ProgressBar progressBarGenerate;
         private System.Windows.Forms.Label label5warning;
         private System.Windows.Forms.Button buttonInfo;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }
 

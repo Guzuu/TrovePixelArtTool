@@ -15,6 +15,8 @@ namespace TrovePixelArtTool
         {
             InitializeComponent();
             InitializeBackgroundWorker();
+            backgroundWorker1.WorkerReportsProgress = true;
+            backgroundWorker1.WorkerSupportsCancellation = true;
         }
 
         public Form2 f2 = new Form2();
@@ -42,60 +44,71 @@ namespace TrovePixelArtTool
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            pictureBoxOutputPixelArt.Image = (Bitmap)e.Result;
-            f2.dataGridViewLayout.ColumnCount = px1.OutImage.Width;
-            f2.dataGridViewLayout.RowCount = px1.OutImage.Height;
-
-            for (int y = 0; y < px1.OutImage.Height; y++)
+            if (e.Cancelled == true)
             {
-                for (int x = 0; x < px1.OutImage.Width; x++)
+                progressBarGenerate.Value = 0;
+                trackBar1.Enabled = true;
+                buttonSaveOutput.Enabled = true;
+                return;
+            }
+            else
+            {
+                pictureBoxOutputPixelArt.Image = (Bitmap)e.Result;
+                f2.dataGridViewLayout.ColumnCount = px1.OutImage.Width;
+                f2.dataGridViewLayout.RowCount = px1.OutImage.Height;
+                Blocks.Block tempBL;
+
+                for (int y = 0; y < px1.OutImage.Height; y++)
                 {
-                    if(DGVPixelArt[x, y].Color == null)
+                    for (int x = 0; x < px1.OutImage.Width; x++)
                     {
-                        f2.dataGridViewLayout[x, y].Style.BackColor = Color.White;
-                        continue;
+                        tempBL = DGVPixelArt[x, y];
+                        if (tempBL.Color == null)
+                        {
+                            f2.dataGridViewLayout[x, y].Style.BackColor = Color.White;
+                            continue;
+                        }
+                        f2.dataGridViewLayout[x, y].Style.BackColor = Color.FromArgb(tempBL.R, tempBL.G, tempBL.B);
+                        if (tempBL.CL.L < 40) f2.dataGridViewLayout[x, y].Style.ForeColor = Color.White;
+                        f2.dataGridViewLayout[x, y].Value = tempBL.ID;
+
+                        f2.dataGridViewLayout.Columns[x].Width = 30;
                     }
-
-                    f2.dataGridViewLayout[x, y].Style.BackColor = ((Bitmap)e.Result).GetPixel(x, y);
-                    if (DGVPixelArt[x, y].CL.L < 40) f2.dataGridViewLayout[x, y].Style.ForeColor = Color.White;
-                    f2.dataGridViewLayout[x, y].Value = DGVPixelArt[x, y].ID;
-
-                    f2.dataGridViewLayout.Columns[x].Width = 30;
+                    f2.dataGridViewLayout.Rows[y].Height = 30;
                 }
-                f2.dataGridViewLayout.Rows[y].Height = 30;
+
+                foreach (KeyValuePair<Blocks.Block, int> pair in keyValuePairs)
+                {
+                    DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
+                    DataGridViewRow row2 = (DataGridViewRow)f2.dataGridView1Layout.Rows[0].Clone();
+
+                    Color c = Color.FromArgb(pair.Key.R, pair.Key.G, pair.Key.B);
+
+                    row.Cells[0].Value = pair.Key.ID;
+                    row.Cells[1].Value = pair.Value;
+                    row.Cells[2].Value = pair.Key.Color;
+                    row.Cells[3].Style.BackColor = c;
+
+                    row2.Cells[0].Value = pair.Key.ID;
+                    row2.Cells[1].Value = pair.Key.Color;
+                    row2.Cells[2].Style.BackColor = c;
+                    dataGridView1.Rows.Add(row);
+                    f2.dataGridView1Layout.Rows.Add(row2);
+                }
+
+                dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Descending);
+                f2.dataGridView1Layout.Sort(f2.dataGridView1Layout.Columns[0], ListSortDirection.Ascending);
+                progressBarGenerate.Value = 0;
+                f2.buttonSaveLayout.Enabled = true;
+                buttonSaveOutput.Enabled = true;
+                trackBar1.Enabled = true;
             }
-
-            foreach (KeyValuePair<Blocks.Block, int> pair in keyValuePairs)
-            {
-                DataGridViewRow row = (DataGridViewRow)dataGridView1.Rows[0].Clone();
-                DataGridViewRow row2 = (DataGridViewRow)f2.dataGridView1Layout.Rows[0].Clone();
-
-                Color c = Color.FromArgb(pair.Key.A, pair.Key.R, pair.Key.G, pair.Key.B);
-
-                row.Cells[0].Value = pair.Key.ID;
-                row.Cells[1].Value = pair.Value;
-                row.Cells[2].Value = pair.Key.Color;
-                row.Cells[3].Style.BackColor = c;
-
-                row2.Cells[0].Value = pair.Key.ID;
-                row2.Cells[1].Value = pair.Key.Color;
-                row2.Cells[2].Style.BackColor = c;
-                dataGridView1.Rows.Add(row);
-                f2.dataGridView1Layout.Rows.Add(row2);
-            }
-
-            dataGridView1.Sort(dataGridView1.Columns[1], ListSortDirection.Descending);
-            f2.dataGridView1Layout.Sort(f2.dataGridView1Layout.Columns[0], ListSortDirection.Ascending);
-            progressBarGenerate.Value = 0;
-            f2.buttonSaveLayout.Enabled = true;
-            buttonSaveOutput.Enabled = true;
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             // Get the BackgroundWorker that raised this event.
             BackgroundWorker worker = sender as BackgroundWorker;
-
             // Assign the result of the computation
             // to the Result property of the DoWorkEventArgs
             // object. This is will be available to the 
@@ -159,6 +172,12 @@ namespace TrovePixelArtTool
             {
                 for (int x = 0; x < px1.OutImage.Width; x++)
                 {
+                    if (worker.CancellationPending == true)
+                    {
+                        e.Cancel = true;
+                        return null;
+                    }
+
                     if (px1.OutImage.GetPixel(x, y).ToArgb() == Color.Empty.ToArgb()) continue;
                     else if (c2 == px1.OutImage.GetPixel(x, y))
                     {
@@ -226,27 +245,26 @@ namespace TrovePixelArtTool
                     if(PercentComplete > HighestPercentReached)
                     {
                         HighestPercentReached = PercentComplete;
-                        worker.WorkerReportsProgress = true;
                         worker.ReportProgress(PercentComplete);
-                        worker.WorkerReportsProgress = false;
                     }
                 }
             }
-
-            
 
             return OutputRecolored;
         }
 
         private void buttonConvertColors_Click(object sender, EventArgs e)
         {
-            dataGridView1.Rows.Clear();
-            f2.dataGridViewLayout.Rows.Clear();
-            f2.dataGridView1Layout.Rows.Clear();
+            if (backgroundWorker1.IsBusy != true)
+            {
+                dataGridView1.Rows.Clear();
+                f2.dataGridViewLayout.Rows.Clear();
+                f2.dataGridView1Layout.Rows.Clear();
+                trackBar1.Enabled = false;
+                DGVPixelArt = new Blocks.Block[px1.OutImage.Width, px1.OutImage.Height];
 
-            DGVPixelArt = new Blocks.Block[px1.OutImage.Width, px1.OutImage.Height];
-
-            backgroundWorker1.RunWorkerAsync();
+                backgroundWorker1.RunWorkerAsync();
+            }
         }
 
         private void buttonGrid_Click(object sender, EventArgs e)
@@ -261,7 +279,16 @@ namespace TrovePixelArtTool
 
         private void button1_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("PixelArtTool v1.5 by Guzuu\nReport any issues by a discord DM:\nDizzy#5556 or 186104843478368256");
+            MessageBox.Show("PixelArtTool v1.5 by Guzuu\nReport any issues by a discord DM:\nDizzy#5556 or 186104843478368256\nPage: https://github.com/Guzuu/TrovePixelArtTool");
+        }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            if (backgroundWorker1.WorkerSupportsCancellation == true)
+            {
+                // Cancel the asynchronous operation.
+                backgroundWorker1.CancelAsync();
+            }
         }
     }
 }

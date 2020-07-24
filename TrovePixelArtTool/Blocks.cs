@@ -25,11 +25,11 @@ namespace TrovePixelArtTool
 
         public struct Block
         {
-            public Block(string Color, byte R, byte G, byte B)
+            public Block(string Color, byte A, byte R, byte G, byte B)
             {
                 this.Color = Color;
 
-                this.A = 255;
+                this.A = A;
                 this.R = R;
                 this.G = G;
                 this.B = B;
